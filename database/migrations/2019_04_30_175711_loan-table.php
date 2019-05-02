@@ -13,12 +13,15 @@ class LoanTable extends Migration
      */
     public function up()
     {
-        Schema::create('loan', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('amount');
-            $table->integer('loan-type-id');
-            $table->date('start-date');
-            $table->string('pay-condition');
+            $table->enum('loan_type',['single','group']);
+            $table->date('start_date');
+            $table->date('finish_date')->nullable();
+            $table->enum('status', ['in_progress', 'finished'])->default('in_progress');
+            $table->integer('family_id')->unsigned()->nullable();
+            $table->foreign('family_id')->references('id')->on('families');
             $table->timestamps();
         });
     }

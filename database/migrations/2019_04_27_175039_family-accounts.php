@@ -13,10 +13,11 @@ class FamilyAccounts extends Migration
      */
     public function up()
     {
-        Schema::create('family', function (Blueprint $table) {
+        Schema::create('families', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('head-name');
-            $table->integer('head-id');
+            $table->string('name');
+            $table->integer('head_id')->unsigned()->nullable();
+            $table->foreign('head_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

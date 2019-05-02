@@ -13,13 +13,13 @@ class PaymentTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('loan-id');
-            $table->integer('pay-amount');
-            $table->date('last-payment');
-            $table->date('next-payment');
-            $table->integer('total-paid-amount');
+            $table->integer('loan_id')->unsigned()->nullable();
+            $table->foreign('loan_id')->references('id')->on('loans');
+            $table->integer('amount');
+            $table->date('due_date')->nullable();
+            $table->dateTime('pay_date')->nullable();
             $table->timestamps();
         });
     }
