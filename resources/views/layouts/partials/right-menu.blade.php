@@ -22,14 +22,20 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{__('main_menu')}}</li>
-            <!-- Optionally, you can add icons to the links -->
-
-            {{--@if(hasCurrentRole('admin'))--}}
-                {{--@include('menus.admin')--}}
-                {{--<li class="header">{{__('app_menu')}}</li>--}}
-                {{--@include('menus.app-admin')--}}
-            {{--@endif--}}
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>مدیریت اعضاء</span>
+                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('users.list')}}">لیست کاربران</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>نمودار Morris</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>نمودار Flot</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>نمودار Inline charts</a></li>
+                </ul>
+            </li>
+            <li class="header"></li>
             <li>
                 <a href="#">
                     <i class="fa fa-user-circle-o text-yellow"></i> 
