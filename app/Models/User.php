@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,11 @@ class User extends Authenticatable
         'national_code','phone','address','role'
     ];
 
+    public $sortable = [
+        'username', 'email','l_name',
+        'national_code','phone','role'];
+
+
     public static $roles = [
         'user' => 'کاربر',
         'admin' => 'مدیر'
@@ -29,6 +35,11 @@ class User extends Authenticatable
         'male' => 'مرد',
         'female' => 'زن'
     ];
+
+    public function fullname()
+    {
+        return $this->f_name.' '.$this->l_name;
+    }
 
     /**
      * The attributes that should be hidden for arrays.

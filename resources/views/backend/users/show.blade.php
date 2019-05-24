@@ -1,3 +1,10 @@
+@php
+    $crumbs = [
+        ['name'=> 'لیست اعضاء', 'url'=> route('users.list')],
+        ['name'=> $user->fullname(), 'url'=> '#'],
+    ]
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
@@ -15,7 +22,7 @@
                         <div class="col-md-12 text-center">
                             <dl>
                                 <dt>نام و نام خانوادگی</dt>
-                                <dd style="margin-bottom: 10px">{{ $user->f_name.' '.$user->l_name }}</dd>
+                                <dd style="margin-bottom: 10px">{{ $user->fullname() }}</dd>
                                 <dt>نام کاربری</dt>
                                 <dd>{{ $user->f_name}}</dd>
                             </dl>

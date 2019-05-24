@@ -54,8 +54,8 @@
         <table class="table table-responsive table-striped">
             <tr>
                 <th>#</th>
-                <th>نام کاربری</th>
-                <th>نام</th>
+                <th>@sortablelink('username', 'نام کاربری')</th>
+                <th>@sortablelink('l_name', 'نام')</th>
                 <th>شماره تلفن</th>
                 <th>نقش کاربری</th>
                 <th>تاریخ عضویت</th>
@@ -65,7 +65,7 @@
                 <tr>
                     <td>{{$loop->index + 1}}</td>
                     <td class="text-center">{{ $user->username }}</td>
-                    <td class="text-center">{{$user->f_name.' '.$user->l_name}}</td>
+                    <td class="text-center">{{$user->fullname()}}</td>
                     <td class="text-center">{{ $user->phone }}</td>
                     <td class="text-center">{{ \App\Models\User::$roles[$user->role]}}</td>
                     <td class="text-center">{{ jdate($user->created_at)->format('%B %d، %Y') }}</td>
@@ -80,6 +80,7 @@
                 </tr>
             @endforeach
         </table>
+        {{ $users->links() }}
     @endcomponent
 @endsection
 

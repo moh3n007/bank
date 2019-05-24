@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function userList()
     {
-        $users = User::get();
+        $users = User::sortable()->paginate($this->pagination_number);
         return view('backend.users.list', ['users'=>$users]);
     }
 
