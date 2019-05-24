@@ -70,6 +70,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content container-fluid">
 
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{route('home')}}">خانه</a>
+                </li>
+
+                @for($i = 2; $i <= count(Request::segments()); $i++)
+                    <li>
+                        <a href="{{ URL::to( implode( '/', array_slice(Request::segments(), 0 ,$i, true)))}}">
+                            {{strtoupper(Request::segment($i))}}
+                        </a>
+                    </li>
+                @endfor
+            </ol>
+
 
         @yield('content')
 

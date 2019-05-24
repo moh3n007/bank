@@ -20,11 +20,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+/** @noinspection PhpParamsInspection */
 Route::namespace('Backend')->prefix('users')->name('users.')->group(function() {
     Route::get('list', 'UserController@userList')->name('list');
+    Route::post('list', 'UserController@userList')->name('list');
     Route::get('create', 'UserController@createForm')->name('create');
     Route::post('create', 'UserController@create')->name('create');
     Route::get('show/{user}', 'UserController@show')->name('show');
+    Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
+    Route::get('search', 'UserController@search')->name('search');
     /*Route::get('info/{dormitory}', 'DormitoryController@info')->name('info');
     Route::post('update/{dormitory}', 'DormitoryController@update')->name('update');
     Route::post('addCover/{dormitory}', 'DormitoryController@addCover')->name('addCover');

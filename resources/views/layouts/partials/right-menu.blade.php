@@ -21,7 +21,7 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">{{__('main_menu')}}</li>
+            <li class="header">منوی اصلی</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -29,18 +29,21 @@
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('users.list')}}">لیست کاربران</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>نمودار Morris</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>نمودار Flot</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>نمودار Inline charts</a></li>
+                <li><a href="{{route('users.create')}}"><i class="fa fa-user-plus"></i><span>ثبت اعضاء</span></a></li>
+                <li><a href="{{route('users.list')}}"><i class="fa fa-list-ol"></i><span>لیست اعضاء</span></a></li>
                 </ul>
             </li>
             <li class="header"></li>
-            <li>
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user-circle-o text-yellow"></i> 
-                    <span>{{__('edit_profile')}}</span>
+                    <span>پروفایل من</span>
+                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-user"></i><span>تغییر پروفایل</span></a></li>
+                    <li><a href="#"><i class="fa fa-key"></i><span>تنظیمات ورود</span></a></li>
+                </ul>
             </li>
             <li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -48,7 +51,7 @@
                 </form>
                 <a href="#" onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
-                    <i class="fa fa-sign-out text-red"></i> <span>{{__('logout')}}</span>
+                    <i class="fa fa-sign-out text-red"></i> <span>خروج</span>
                 </a>
             </li>
 

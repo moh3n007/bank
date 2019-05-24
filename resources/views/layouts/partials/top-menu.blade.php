@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{--{{route('adminPanel')}}--}}" class="logo">
+    <a href="{{ route('home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">پنل</span>
+        <span class="logo-mini fa fa-home" style="margin-top: 15px"></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>کنترل پنل مدیریت</b></span>
+        <span class="logo-lg"><b>صفحه نخست</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -17,8 +17,9 @@
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
 
-                <li>
-                    <a href="#"><i class="fa fa-home"></i> خانه </a>
+                <li style="color: white;margin-top: 7px">
+                    <i>{{ Auth::User()->username }}</i>
+                    <img src="{{ asset('image/1.jpg') }}" style="width: 35px;height: 35px;border-radius: 50%">
                 </li>
 
                 <!-- User Account: style can be found in dropdown.less -->
