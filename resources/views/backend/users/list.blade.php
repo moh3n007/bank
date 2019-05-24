@@ -1,3 +1,9 @@
+@php
+    $crumbs = [
+        ['name'=> 'لیست اعضاء', 'url'=> '#']
+    ]
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
@@ -62,13 +68,11 @@
                     <td class="text-center">{{$user->f_name.' '.$user->l_name}}</td>
                     <td class="text-center">{{ $user->phone }}</td>
                     <td class="text-center">{{ \App\Models\User::$roles[$user->role]}}</td>
-                    <td class="text-center">{{ $user->created_at }}</td>
-                    <td class="text-center col-xs-1">
+                    <td class="text-center">{{ jdate($user->created_at)->format('%B %d، %Y') }}</td>
+                    <td class="setting-icons text-center col-xs-1">
                         <a href="{{ route('users.show', [$user->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                             <i class="fa fa-info"></i>
                         </a>
-                    </td>
-                    <td class="text-center col-xs-1">
                         <a href="{{ route('users.delete', [$user->id]) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف کاربر">
                             <i class="fa fa-trash"></i>
                         </a>

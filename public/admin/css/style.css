@@ -178,3 +178,6 @@ table.layout .selected{
 .btn-danger{
     margin-left: 0!important;
 }
+.setting-icons .btn{
+    min-width: 25px;
+}

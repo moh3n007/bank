@@ -1,3 +1,10 @@
+@php
+    $crumbs = [
+        ['name'=> 'لیست اعضاء', 'url'=> route('users.list')],
+        ['name'=> 'ثبت اعضاء', 'url'=> '#'],
+    ]
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
