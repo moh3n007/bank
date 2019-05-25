@@ -30,6 +30,8 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('create', 'UserController@createForm')->name('create');
         Route::post('create', 'UserController@create')->name('create');
         Route::get('show/{user}', 'UserController@show')->name('show');
+        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
+        Route::post('show/{user}/edit', 'UserController@update')->name('update');
         Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
         Route::get('search', 'UserController@search')->name('search');
         /*Route::get('info/{dormitory}', 'DormitoryController@info')->name('info');

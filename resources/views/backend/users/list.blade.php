@@ -22,7 +22,7 @@
 
 
         <div class="col-xs-2" style="margin-bottom: 9px">
-            <a href="{{ route('users.create') }}" class="btn btn-lg bg-green" data-toggle="tooltip" title="ثبت کاربر جدید">
+            <a href="{{ route('users.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت کاربر جدید">
                 <i class="fa fa-user-plus"></i>
             </a>
         </div>
@@ -56,8 +56,8 @@
                 <th>#</th>
                 <th>@sortablelink('username', 'نام کاربری')</th>
                 <th>@sortablelink('l_name', 'نام')</th>
-                <th>شماره تلفن</th>
-                <th>نقش کاربری</th>
+                <th>@sortablelink('phone', 'شماره تلفن')</th>
+                <th>@sortablelink('role', 'نقش کاربری')</th>
                 <th>تاریخ عضویت</th>
                 <th></th>
             </tr>

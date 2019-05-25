@@ -24,13 +24,25 @@
             <li class="header">منوی اصلی</li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-user"></i>
                     <span>مدیریت اعضاء</span>
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
                 <ul class="treeview-menu">
                 <li><a href="{{route('users.create')}}"><i class="fa fa-user-plus"></i><span>ثبت اعضاء</span></a></li>
                 <li><a href="{{route('users.list')}}"><i class="fa fa-list-ol"></i><span>لیست اعضاء</span></a></li>
+                </ul>
+            </li>
+            <li class="header"></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>مدیریت خانواده ها</span>
+                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-user-plus"></i><span>ثبت خانواده</span></a></li>
+                    <li><a href="#"><i class="fa fa-list-ol"></i><span>لیست خانواده</span></a></li>
                 </ul>
             </li>
             <li class="header"></li>

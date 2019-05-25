@@ -9,6 +9,12 @@
 
 @section('content')
     @component('forms.panel', ['title'=>'نمایش اطلاعات کامل'])
+        <div class="col-md-12 pull-right" style="margin-bottom: 9px">
+            <a href="{{ route('users.edit' , [$user->id]) }}" class="btn btn-lg text-yellow" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="تغییر اطلاعات">
+                <i class="fa fa-edit"></i>
+            </a>
+        </div>
+
         <div class="col-md-3">
             <div class="box-header with-border">
                 <div class="clear"></div>

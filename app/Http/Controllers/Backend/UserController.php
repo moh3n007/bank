@@ -85,5 +85,15 @@ class UserController extends Controller
         return view('backend.users.list', compact('users'));
     }
 
+    public function edit(User $user)
+    {
+        return view('backend.users.edit' , ['user'=>$user]);
+    }
+
+    public function update(Request $request , User $user)
+    {
+        $user -> update($request->all());
+        return Redirect::route('users.list')->with('alert.success', 'اطلاعات کاربر با موفقیت تغییر یافت');
+    }
 
 }
