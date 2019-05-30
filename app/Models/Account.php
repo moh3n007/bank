@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    public function user()
+
+    protected $fillable = [
+        'account_number',
+        'amount'
+    ];
+
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function family()
+    public function families()
     {
         return $this->belongsTo(Family::class);
     }

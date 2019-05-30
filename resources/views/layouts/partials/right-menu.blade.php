@@ -36,13 +36,25 @@
             <li class="header"></li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-money"></i>
+                    <span>مدیریت حساب</span>
+                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('accounts.create') }}"><i class="fa fa-plus-square"></i><span>ثبت حساب</span></a></li>
+                    <li><a href="{{ route('accounts.list') }}"><i class="fa fa-list-ol"></i><span> لیست حساب ها</span></a></li>
+                </ul>
+            </li>
+            <li class="header"></li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-users"></i>
                     <span>مدیریت خانواده ها</span>
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-user-plus"></i><span>ثبت خانواده</span></a></li>
-                    <li><a href="#"><i class="fa fa-list-ol"></i><span>لیست خانواده</span></a></li>
+                    <li><a href="{{ route('families.create') }}"><i class="fa fa-user-plus"></i><span>ثبت خانواده</span></a></li>
+                    <li><a href="{{ route('families.list') }}"><i class="fa fa-list-ol"></i><span>لیست خانواده ها</span></a></li>
                 </ul>
             </li>
             <li class="header"></li>

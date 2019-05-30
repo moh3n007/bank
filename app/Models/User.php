@@ -50,7 +50,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function account() {
+    public function accounts() {
         return $this->hasmany(Account::class);
     }
 }

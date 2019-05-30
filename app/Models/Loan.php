@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
-    public function family()
+    public function families()
     {
         return $this->belongsTo(Family::class);
     }
 
-    public function payment()
+    public function payments()
     {
         return $this->hasMany(Payment::class);
     }

@@ -22,6 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{asset('admin/bower_components/Ionicons/css/ionicons.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin\bower_components\select2\dist\css\select2.min.css')}}">
 
 @yield('style')
 @stack('style')
@@ -108,6 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $('[data-toggle="tooltip"]').tooltip();
     $('.tooltip-action').tooltip();
     $('[data-toggle="popover"]').popover({ container: 'body'});
+    $('#user_list').select2();
 
     // Menu navigation
     var url = window.location;
@@ -117,9 +120,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }).closest('li').addClass('active')
       .closest('.treeview-menu').css('display', 'block')
       .closest('.treeview').addClass('menu-open');
-
   })
 </script>
+
+<script src="{{ asset('admin\bower_components\select2\dist\js\select2.min.js') }}"></script>
+
 
 @yield('script')
 @stack('script')
