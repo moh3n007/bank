@@ -13,7 +13,17 @@ class UserController extends Controller
 
     public function userList()
     {
-        $users = User::sortable()->paginate($this->pagination_number);
+        $query = User::query();
+        if(\request()->has('search_term')){
+            $term = \request()->get('search_term');
+            $query->where(function ($query) use ($term){
+                $query->where('username','like', "%$term%")
+                    ->orWhere('phone',$term)
+                    ->orWhere('l_name','like', "%$term%")
+                    ->orWhere('f_name','like', "%$term%");
+            });
+        }
+        $users = $query->sortable()->paginate($this->pagination_number);
         return view('backend.users.list', ['users'=>$users]);
     }
 

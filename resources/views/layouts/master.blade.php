@@ -105,7 +105,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
   $(function () {
     $('#admin-error-modal').modal('show');
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({ container: 'body'});
     $('.tooltip-action').tooltip();
     $('[data-toggle="popover"]').popover({ container: 'body'});
 

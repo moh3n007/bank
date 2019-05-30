@@ -26,21 +26,9 @@
                 <i class="fa fa-user-plus"></i>
             </a>
         </div>
-        <div class="col-xs-4 col-xs-offset-6">
-        <form action="{{ route('users.search') }}" class="navbar-form navbar-left pull-left"   method="get" accept-charset="utf-8">
-            {{csrf_field()}}
-            <div style="display:none;">
-                <input type="hidden" name="_method" value="POST">
-            </div>
-            <div class="form-group">
-                <input name="search_term" value="{{ old('search') }}" type="text" class="form-control input-sm" placeholder="جستجو">
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button style="margin-left: 0;" type="submit" class="btn btn-sm btn-info" title="" data-original-title="جستجو"><span class="fa fa-search"></span></button>
-                <button type="submit" name="clear" class="btn btn-sm btn-primary" title="" data-original-title="پاک سازی جستجو"><span class="fa fa-times"></span></button>
-            </div>
-        </form>
-        </div>
+
+        @component('components.search')
+        @endcomponent
 
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">--}}
             {{--<ul class="nav navbar-nav">--}}
