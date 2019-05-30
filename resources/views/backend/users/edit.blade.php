@@ -1,7 +1,7 @@
 @php
     $crumbs = [
         ['name'=> 'لیست اعضاء', 'url'=> route('users.list')],
-        ['name'=> $user->fullname(), 'url'=> '#'],
+        ['name'=> $user->fullname(), 'url'=> route('users.show', [$user->id])],
         ['name'=> 'تغییر اطلاعات', 'url'=> '#'],
     ]
 @endphp
