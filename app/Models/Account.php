@@ -9,15 +9,17 @@ class Account extends Model
 
     protected $fillable = [
         'account_number',
-        'amount'
+        'amount',
+        'user_id',
+        'family_id'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function families()
+    public function family()
     {
         return $this->belongsTo(Family::class);
     }

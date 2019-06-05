@@ -110,7 +110,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $('[data-toggle="tooltip"]').tooltip({ container: 'body'});
     $('.tooltip-action').tooltip();
     $('[data-toggle="popover"]').popover({ container: 'body'});
-    $('#user_list').select2();
 
     // Menu navigation
     var url = window.location;
@@ -123,7 +122,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   })
 </script>
 
-<script src="{{ asset('admin\bower_components\select2\dist\js\select2.min.js') }}"></script>
 
 
 @yield('script')

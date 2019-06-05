@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Account;
+use App\Models\Family;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,17 +13,18 @@ class AccountController extends Controller
 {
     public function accountList()
     {
-        $accounts = Account::paginate($this->pagination_number);
+        $accounts = Account::with('user','family')->paginate($this->pagination_number);
         return view('backend.accounts.list', ['accounts'=>$accounts]);
     }
 
     public function createForm()
     {
         $users = User::all();
-        return view('backend.accounts.create', ['users'=>$users]);
+        $families = Family::all();
+        return view('backend.accounts.create', ['users'=>$users] , ['families'=>$families]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate(
             [
@@ -35,6 +37,7 @@ class AccountController extends Controller
             ]
         );
         $account = new Account($request->all());
+        dd($account);
         if ($account->save()) {
             return Redirect::route('accounts.list')->with('alert.success', 'حساب با موفقیت ثبت گردید');
         }

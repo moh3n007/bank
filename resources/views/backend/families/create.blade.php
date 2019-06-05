@@ -10,7 +10,7 @@
 @section('content')
 
     @component('forms.panel', ['title'=>'ثبت خانواده جدید'])
-        <form action="{{route('families.create')}}" method="POST">
+        <form action="{{route('families.store')}}" method="POST">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-8 col-md-push-2">

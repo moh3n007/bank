@@ -40,6 +40,7 @@
             <tr>
                 <th>#</th>
                 <th>نام دارنده حساب</th>
+                <th>نام خانواده</th>
                 <th>شماره حساب</th>
                 <th>موجودی اولیه حساب</th>
                 <th>تاریخ ایجاد</th>
@@ -49,6 +50,7 @@
                 <tr>
                     <td>{{$loop->index + 1}}</td>
                     <td class="text-center"></td>
+                    <td class="text-center">{{ $account->family->name }}</td>
                     <td class="text-center">{{ $account->account_number }}</td>
                     <td class="text-center">{{ $account->amount }}</td>
                     <td class="text-center">{{ jdate($account->created_at)->format('%B %d، %Y') }}</td>

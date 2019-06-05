@@ -26,7 +26,6 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
     /** @noinspection PhpParamsInspection */
     Route::prefix('users')->name('users.')->group(function() {
         Route::get('list', 'UserController@userList')->name('list');
-        Route::post('list', 'UserController@userList')->name('list');
         Route::get('create', 'UserController@createForm')->name('create');
         Route::post('create', 'UserController@create')->name('create');
         Route::get('show/{user}', 'UserController@show')->name('show');
@@ -44,9 +43,8 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
     /** @noinspection PhpParamsInspection */
     Route::prefix('families')->name('families.')->group(function() {
         Route::get('list', 'FamilyController@familyList')->name('list');
-        Route::post('list', 'FamilyController@familyList')->name('list');
-        Route::get('create', 'FamilyController@createForm')->name('create');
-        Route::post('create', 'FamilyController@create')->name('create');
+        Route::get('create/{family?}', 'FamilyController@createForm')->name('create');
+        Route::post('store', 'FamilyController@store')->name('store');
         Route::get('show/{family}', 'FamilyController@show')->name('show');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
 //        Route::post('show/{user}/edit', 'UserController@update')->name('update');
@@ -62,9 +60,8 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
     /** @noinspection PhpParamsInspection */
     Route::prefix('accounts')->name('accounts.')->group(function() {
         Route::get('list', 'AccountController@accountList')->name('list');
-        Route::post('list', 'AccountController@accountList')->name('list');
         Route::get('create', 'AccountController@createForm')->name('create');
-        Route::post('create', 'AccountController@create')->name('create');
+        Route::post('store', 'AccountController@store')->name('store');
         Route::get('show/{account}', 'AccountController@show')->name('show');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
 //        Route::post('show/{user}/edit', 'UserController@update')->name('update');

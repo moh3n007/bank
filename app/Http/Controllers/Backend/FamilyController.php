@@ -16,12 +16,12 @@ class FamilyController extends Controller
         return view('backend.families.list', ['families'=>$families]);
     }
 
-    public function createForm()
+    public function createForm(Family $family = null)
     {
-        return view('backend.families.create');
+        return view('backend.families.create', ['family'=>$family]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate(
         [
@@ -33,7 +33,7 @@ class FamilyController extends Controller
         );
         $family = new Family($request->all());
         if ($family->save()) {
-            return Redirect::route('families.list')->with('alert.success', 'خانواده با موفقیت ثبت گردید');
+            return Redirect::route('families.create', [$family->id])->with('alert.success', 'خانواده با موفقیت ثبت گردید');
         }
         return back()->withInput()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }

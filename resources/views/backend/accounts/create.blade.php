@@ -10,15 +10,23 @@
 @section('content')
 
     @component('forms.panel', ['title'=>'ثبت حساب جدید'])
-        <form action="{{route('accounts.create')}}" method="POST">
+        <form action="{{route('accounts.store')}}" method="POST">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-8 col-md-push-2">
                     <div class="form-group">
                         <label for="user_list">نام دارنده حساب</label>
-                        <select name="user_list" id="user_list" class="form-control">
+                        <select name="user_id" id="user_list" class="form-control">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->fullname() }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="family_id">نام خانواده</label>
+                        <select name="family_id" id="family_id" class="form-control">
+                            @foreach($families as $family)
+                                <option value="{{ $family->id }}">{{ $family->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -42,4 +50,13 @@
         </form>
     @endcomponent
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('admin\bower_components\select2\dist\js\select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#user_list').select2();
+        })
+    </script>
 @endsection
