@@ -16,7 +16,7 @@
                 <div class="col-md-8 col-md-push-2">
                     <div class="form-group">
                         <label for="user_list">نام دارنده حساب</label>
-                        <select name="user_id" id="user_list" class="form-control">
+                        <select name="user_list" id="user_list" class="form-control">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->fullname() }}</option>
                             @endforeach
@@ -42,13 +42,4 @@
         </form>
     @endcomponent
 
-@endsection
-
-@section('script')
-    <script src="{{ asset('admin\bower_components\select2\dist\js\select2.min.js') }}"></script>
-    <script>
-      $(document).ready(function () {
-        $('#user_list').select2();
-      })
-    </script>
 @endsection

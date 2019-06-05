@@ -48,7 +48,7 @@
             @foreach($accounts as $account)
                 <tr>
                     <td>{{$loop->index + 1}}</td>
-                    <td class="text-center">{{ $account->user->fullname() }}</td>
+                    <td class="text-center"></td>
                     <td class="text-center">{{ $account->account_number }}</td>
                     <td class="text-center">{{ $account->amount }}</td>
                     <td class="text-center">{{ jdate($account->created_at)->format('%B %d، %Y') }}</td>
@@ -65,3 +65,4 @@
         </table>
     @endcomponent
 @endsection
+

@@ -12,7 +12,7 @@ class AccountController extends Controller
 {
     public function accountList()
     {
-        $accounts = Account::with('user','family')->paginate($this->pagination_number);
+        $accounts = Account::paginate($this->pagination_number);
         return view('backend.accounts.list', ['accounts'=>$accounts]);
     }
 
