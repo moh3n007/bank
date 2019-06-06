@@ -37,7 +37,7 @@ class AccountController extends Controller
             ]
         );
         $account = new Account($request->all());
-        dd($account);
+        //dd($account);
         if ($account->save()) {
             return Redirect::route('accounts.list')->with('alert.success', 'حساب با موفقیت ثبت گردید');
         }
