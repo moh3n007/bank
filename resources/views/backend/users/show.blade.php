@@ -8,63 +8,86 @@
 @extends('layouts.master')
 
 @section('content')
-    @component('forms.panel', ['title'=>'نمایش اطلاعات کامل'])
-        <div class="col-md-12 pull-right" style="margin-bottom: 9px">
-            <a href="{{ route('users.edit' , [$user->id]) }}" class="btn btn-lg text-yellow" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="تغییر اطلاعات">
-                <i class="fa fa-edit"></i>
-            </a>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="{{asset('image/avatar/avatar.png')}}{{--{{(hasAvatar($user->id)? asset('images/avatar/'.$user->id.'.jpg?'.str_random(5)) : asset('admin/img/avatar.png') )}}--}}" alt="User profile picture">
+
+                    <h3 class="profile-username text-center">{{$user->fullname()}}</h3>
+
+                    <p class="text-muted text-center">زمان آخرین ورود {{jdate($user->last_login)->format('%d %B، %Y')}}</p>
+
+                </div>
+                <hr>
+                <ul class="nav nav-pills nav-stacked config-controller">
+                    <li class="active">
+                        <a href="#base_info">اطلاعات پایه
+                            <span class="pull-left"><i class="fa fa-user"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#accounts">حساب ها
+                            <span class="pull-left"><i class="fa fa-dollar"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="box-header with-border">
-                <div class="clear"></div>
-                <div class="well">
-                    <div class="row">
-                        <div class="col-md-12" style="margin-bottom: 10px">
-                            <div class="profile-user-img" style="border-radius: 50%">
-                                <img  src="{{ asset('image/1.jpg') }}" style="height: 87px;width: 87px;border-radius: 50%">
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <dl>
-                                <dt>نام و نام خانوادگی</dt>
-                                <dd style="margin-bottom: 10px">{{ $user->fullname() }}</dd>
-                                <dt>نام کاربری</dt>
-                                <dd>{{ $user->f_name}}</dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-md-9">
-            <div class="box-header with-border">
-                <div class="clear"></div>
-                <div class="well">
-                    <div class="row">
-                        <div class="col-md-6 text-center">
-                            <dl>
-                                <dt>پست الکترونیکی</dt>
-                                <dd style="margin-bottom: 10px">{{ $user->email}}</dd>
-                                <dt>شماره تلفن</dt>
-                                <dd style="margin-bottom: 10px">{{ $user->phone}}</dd>
-                                <dt>نقش کاربری</dt>
-                                <dd style="margin-bottom: 10px">{{ \App\Models\User::$roles[$user->role]}}</dd>
-                            </dl>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <dl>
-                                    <dt>جنسیت</dt>
-                                    <dd style="margin-bottom: 10px">{{ \App\Models\User::$genders[$user->gender]}}</dd>
-                                    <dt>شماره ملی</dt>
-                                    <dd style="margin-bottom: 10px">{{ $user->national_code}}</dd>
-                                    <dt>آدرس</dt>
-                                    <dd style="margin-bottom: 10px">{{ $user->address}}</dd>
-                                </dl>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="config-container" style="display: block;" id="base_info">
+                @include('backend.users.partials.base_info')
             </div>
+
+            <div class="config-container" id="accounts">
+                @include('backend.users.partials.accounts')
+            </div>
+
         </div>
-    @endcomponent
+    </div>
+@endsection
+
+@section('script')
+    <script>
+      $(document).ready(function () {
+        // check partial isset
+          @if(session()->exists('partial_view'))
+          if($('#'+'{{session('partial_view')}}').length > 0) {
+            $('.config-container').css('display', 'none');
+            $('#' + '{{session('partial_view')}}').fadeIn();
+            $('.config-controller li').removeClass('active');
+            $('a[href="#{{session('partial_view')}}"]').closest('li').addClass('active');
+          }
+          @endif
+        // find any form error
+        if($('.form-group.has-error').length !== 0){
+          $('.config-container').css('display','none');
+          $('.form-group.has-error').closest('.config-container').slideDown();
+        }
+        // go to partial by click
+        $('.config-controller a').click(function (e) {
+          e.preventDefault();
+          $('.config-controller li').removeClass('active');
+          $(this).closest('li').addClass('active');
+          //
+          var hash = $(this).attr('href').replace(/^#/, '');
+          $('.config-container').css('display','none');
+          $('#'+hash).fadeIn();
+          // set session
+          $.ajax({
+            url: "{{url('panel/ajax/setPartialPage')}}",
+            'type': 'get',
+            data: { partial: hash },
+            success: function(data){
+              console.log(data);
+            }
+          });
+        });
+        ////////
+
+      });
+    </script>
 @endsection
