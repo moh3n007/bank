@@ -90,7 +90,7 @@
                         'options' => \App\Models\User::$roles,
                     ])
                     @endcomponent
-                    <button type="submit" class="btn btn-primary">ثبت اطلاعات </button>
+                    <button type="submit" class="btn btn-primary">تغییر اطلاعات </button>
                 </div>
             </div>
         </form>

@@ -46,8 +46,8 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('create/{family?}', 'FamilyController@createForm')->name('create');
         Route::post('store', 'FamilyController@store')->name('store');
         Route::get('show/{family}', 'FamilyController@show')->name('show');
+        Route::post('show/{family}/edit', 'FamilyController@update')->name('update');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
-//        Route::post('show/{user}/edit', 'UserController@update')->name('update');
 //        Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
 //        Route::get('search', 'UserController@search')->name('search');
         /*Route::get('info/{dormitory}', 'DormitoryController@info')->name('info');
@@ -63,9 +63,9 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('create', 'AccountController@createForm')->name('create');
         Route::post('store', 'AccountController@store')->name('store');
         Route::get('show/{account}', 'AccountController@show')->name('show');
+        Route::post('show/{account}/edit', 'AccountController@update')->name('update');
+        Route::get('show/{account}/delete', 'AccountController@delete')->name('delete');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
-//        Route::post('show/{user}/edit', 'UserController@update')->name('update');
-//        Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
 //        Route::get('search', 'UserController@search')->name('search');
         /*Route::get('info/{dormitory}', 'DormitoryController@info')->name('info');
         Route::post('update/{dormitory}', 'DormitoryController@update')->name('update');

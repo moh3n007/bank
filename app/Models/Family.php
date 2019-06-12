@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Family extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'head_id'
     ];
 
     public function accounts()
@@ -18,5 +19,10 @@ class Family extends Model
     public function loans()
     {
         return $this->hasMany(Loan::class);
+    }
+
+    public function head()
+    {
+        return $this->hasOne(User::class,'id');
     }
 }

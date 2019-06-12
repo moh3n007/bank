@@ -27,6 +27,9 @@
             </a>
         </div>
 
+        @component('components.search')
+        @endcomponent
+
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">--}}
         {{--<ul class="nav navbar-nav">--}}
         {{--<li>--}}
@@ -40,7 +43,7 @@
             <tr>
                 <th>#</th>
                 <th>نام دارنده حساب</th>
-                <th>نام خانواده</th>
+                <th>نام گروه</th>
                 <th>شماره حساب</th>
                 <th>موجودی اولیه حساب</th>
                 <th>تاریخ ایجاد</th>
@@ -58,7 +61,7 @@
                         <a href="{{ route('accounts.show' , [$account->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                             <i class="fa fa-info"></i>
                         </a>
-                        <a href="#" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف حساب">
+                        <a href="{{ route('accounts.delete', [$account->id]) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف حساب">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>

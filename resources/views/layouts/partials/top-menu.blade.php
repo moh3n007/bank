@@ -19,7 +19,7 @@
 
                 <li style="color: white;margin-top: 7px">
                     <i>{{ Auth::User()->username }}</i>
-                    <img src="{{ asset('image/1.jpg') }}" style="width: 35px;height: 35px;border-radius: 50%">
+                    <img src="{{asset('image/avatar/avatar.png') }}" style="width: 35px;height: 35px;border-radius: 50%">
                 </li>
 
                 <!-- User Account: style can be found in dropdown.less -->

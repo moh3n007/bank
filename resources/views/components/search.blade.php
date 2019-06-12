@@ -2,8 +2,8 @@
     $action = $action ?? ''
 @endphp
 
-<div class="col-xs-4 col-xs-offset-6">
-    <form action="{{ $action }}" class="navbar-form navbar-left pull-left"  method="get" accept-charset="utf-8">
+<div>
+    <form action="{{ $action }}" class="navbar-form navbar-left col-md-12"  method="get" accept-charset="utf-8">
         <div class="form-group">
             <input name="search_term" value="{{ \Illuminate\Support\Facades\Input::get('search_term') }}" type="text" class="form-control input-sm" placeholder="جستجو">
         </div>

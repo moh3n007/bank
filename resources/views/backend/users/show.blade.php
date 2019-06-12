@@ -24,7 +24,7 @@
                 <ul class="nav nav-pills nav-stacked config-controller">
                     <li class="active">
                         <a href="#base_info">اطلاعات پایه
-                            <span class="pull-left"><i class="fa fa-user"></i></span>
+                            <span class="pull-left"><i class="fa fa-info"></i></span>
                         </a>
                     </li>
                     <li>

@@ -1,13 +1,13 @@
 @php
     $crumbs = [
-        ['name'=> 'لیست خانواده ها', 'url'=> '#']
+        ['name'=> 'لیست گروه ها', 'url'=> '#']
     ]
 @endphp
 
 @extends('layouts.master')
 
 @section('content')
-    @component('forms.panel', ['title'=>'لیست خانواده ها'])
+    @component('forms.panel', ['title'=>'لیست گروه ها'])
         {{--<div class="col-md-offset-1" style="width: 45px;height: 45px;margin-bottom: 9px">--}}
         {{--<a href="{{ route('users.create') }}" data-toggle="tooltip" title="ثبت کاربر جدید">--}}
         {{--<!-- small box -->--}}
@@ -22,7 +22,7 @@
 
 
         <div class="col-xs-2" style="margin-bottom: 9px">
-            <a href="{{ route('families.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت خانواده جدید">
+            <a href="{{ route('families.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت گروه جدید">
                 <i class="fa fa-users"></i>
             </a>
         </div>

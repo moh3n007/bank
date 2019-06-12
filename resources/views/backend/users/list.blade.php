@@ -21,14 +21,23 @@
 
 
 
-        <div class="col-xs-2" style="margin-bottom: 9px">
-            <a href="{{ route('users.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت کاربر جدید">
-                <i class="fa fa-user-plus"></i>
+        {{--<div class="col-xs-2" style="margin-bottom: 9px">--}}
+            {{--<a href="{{ route('users.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت کاربر جدید">--}}
+                {{--<i class="fa fa-user-plus"></i>--}}
+            {{--</a>--}}
+        {{--</div>--}}
+
+        <br>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <a href="{{ route('users.create') }}" style="color:#131313;font-size:18px;">
+                <span style="color:#129395; font-size:20px; margin-left: 6px" class="fa fa-user-plus" aria-hidden="true"></span>ثبت کاربر جدید
             </a>
         </div>
 
-        @component('components.search')
-        @endcomponent
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @component('components.search')
+            @endcomponent
+        </div>
 
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">--}}
             {{--<ul class="nav navbar-nav">--}}

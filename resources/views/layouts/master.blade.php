@@ -24,6 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset('admin\bower_components\select2\dist\css\select2.min.css')}}">
+    <!-- Jeditable -->
+    <link rel="stylesheet" href="{{asset('admin\bower_components\jquery_jeditable\dist\jquery_jeditable.min.css')}}">
 
 @yield('style')
 @stack('style')
@@ -102,6 +104,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/js/adminlte.min.js') }}"></script>
+
+<!-- jQuery jeditable -->
+05
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.js')}}"></script>
+06
+
+07
+<!-- jeditable plugins -->
+08
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.autogrow.js')}}"></script>
+09
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.charcounter.js')}}"></script>
+10
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.checkbox.js')}}"></script>
+11
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.datepicker.js')}}"></script>
+12
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.masked.js')}}"></script>
+13
+<script src="{{asset('admin/bower_components/jquery_jeditable/src/jquery.jeditable.time.js')}}"></script>
 
 
 <script>

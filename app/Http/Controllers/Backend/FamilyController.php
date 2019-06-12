@@ -18,7 +18,8 @@ class FamilyController extends Controller
 
     public function createForm(Family $family = null)
     {
-        return view('backend.families.create', ['family'=>$family]);
+        $users = User::all();
+        return view('backend.families.create', ['family'=>$family] , ['users'=>$users]);
     }
 
     public function store(Request $request)
@@ -33,16 +34,22 @@ class FamilyController extends Controller
         );
         $family = new Family($request->all());
         if ($family->save()) {
-            return Redirect::route('families.create', [$family->id])->with('alert.success', 'خانواده با موفقیت ثبت گردید');
+            return Redirect::route('families.show', [$family->id])->with('alert.success', 'خانواده با موفقیت ثبت گردید');
         }
         return back()->withInput()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }
 
     public function show(Family $family)
     {
+        $head = $family->head();
+//        dd($head);
+        return view('backend.families.show', ['family'=>$family] , ['head'=>$head]);
+    }
 
-        $users = User::all();
-        return view('backend.families.show', ['family'=>$family , 'users'=>$users]);
+    public function update(Request $request , Family $family)
+    {
+        $family -> update($request->all());
+        return back()->with('alert.success', 'نام گروه با موفقیت تغییر یافت');
     }
 
 }

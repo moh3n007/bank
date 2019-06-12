@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -72,7 +73,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('backend.users.show', ['user'=>$user]);
+//        $accounts = Account::where($user_id,$userId)->paginate($this->pagination_number);
+        $accounts = $user -> accounts()->get();
+        return view('backend.users.show', ['user'=>$user], ['accounts'=>$accounts]);
     }
 
     public function delete(User $user)

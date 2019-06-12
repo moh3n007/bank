@@ -13,7 +13,15 @@ class AccountController extends Controller
 {
     public function accountList()
     {
-        $accounts = Account::with('user','family')->paginate($this->pagination_number);
+        $query = Account::query();
+        if(\request()->has('search_term')){
+            $term = \request()->get('search_term');
+            $query->where(function ($query) use ($term){
+                $query->where('account_number',"$term");
+            });
+        }
+
+        $accounts = $query->paginate($this->pagination_number);
         return view('backend.accounts.list', ['accounts'=>$accounts]);
     }
 
@@ -43,4 +51,38 @@ class AccountController extends Controller
         }
         return back()->withInput()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }
+
+    public function show(Account $account)
+    {
+        $users = User::all();
+        $families = Family::all();
+        return view('backend.accounts.show',compact('account','users','families'));
+    }
+
+    public function Search(Request $request)
+    {
+        if($request->has('search')){
+            $accounts = Account::search($request->get('search'))->get();
+        }else{
+            $accounts = Account::get();
+        }
+
+
+        return view('backend.accounts.list', compact('accounts'));
+    }
+
+    public function update(Request $request , Account $account)
+    {
+        $account -> update($request->all());
+        return Redirect::route('accounts.list')->with('alert.success', 'اطلاعات حساب با موفقیت تغییر یافت');
+    }
+
+    public function delete(Account $account)
+    {
+        if ($account->delete()) {
+            return back()->with('alert.warning','حساب با موفقیت حذف گردید');
+        }
+        return back()->with('alert.danger', 'خطا در حذف اطلاعات');
+    }
+
 }

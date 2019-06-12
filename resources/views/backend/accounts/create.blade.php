@@ -23,7 +23,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="family_id">نام خانواده</label>
+                        <label for="family_id">نام گروه</label>
                         <select name="family_id" id="family_id" class="form-control">
                             @foreach($families as $family)
                                 <option value="{{ $family->id }}">{{ $family->name }}</option>
