@@ -15,7 +15,7 @@
                 <div class="col-md-6 text-center">
                     <dl>
                         <dt>نماینده گروه</dt>
-{{--                        <dd style="margin-bottom: 10px">{{ @$family->head->fullname()}}</dd>--}}
+                        <dd style="margin-bottom: 10px">{{ @$family->head->fullname()}}</dd>
                     </dl>
                 </div>
             </div>

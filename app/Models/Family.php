@@ -23,6 +23,6 @@ class Family extends Model
 
     public function head()
     {
-        return $this->hasOne(User::class,'id');
+        return $this->belongsTo(User::class,'head_id');
     }
 }

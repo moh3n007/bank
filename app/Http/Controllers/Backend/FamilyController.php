@@ -41,9 +41,7 @@ class FamilyController extends Controller
 
     public function show(Family $family)
     {
-        $head = $family->head();
-//        dd($head);
-        return view('backend.families.show', ['family'=>$family] , ['head'=>$head]);
+        return view('backend.families.show', ['family'=>$family]);
     }
 
     public function update(Request $request , Family $family)
