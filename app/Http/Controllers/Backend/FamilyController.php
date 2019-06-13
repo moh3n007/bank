@@ -42,12 +42,7 @@ class FamilyController extends Controller
 
     public function show(Family $family)
     {
-//        $head = $family->head();
-//        dd($head);
-        $names = Account::all();
-        $accounts = $family ->accounts()->get();
-//        dd($accounts);
-        return view('backend.families.show', compact('family','accounts','names'));
+        return view('backend.families.show', ['family'=>$family]);
     }
 
     public function update(Request $request , Family $family)
