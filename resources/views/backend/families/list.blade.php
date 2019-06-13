@@ -21,10 +21,21 @@
 
 
 
-        <div class="col-xs-2" style="margin-bottom: 9px">
-            <a href="{{ route('families.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت گروه جدید">
-                <i class="fa fa-users"></i>
+        {{--<div class="col-xs-2" style="margin-bottom: 9px">--}}
+            {{--<a href="{{ route('families.create') }}" class="btn btn-lg bg-white" style="border-color: grey;border-radius: 50%" data-toggle="tooltip" title="ثبت گروه جدید">--}}
+                {{--<i class="fa fa-users"></i>--}}
+            {{--</a>--}}
+        {{--</div>--}}
+
+        <div class="col-md-8 col-sm-8 col-xs-12" style="padding-top: 7px">
+            <a href="{{ route('families.create') }}" style="color:#131313;font-size:18px;">
+                <span style="color:#129395; font-size:20px; margin-left: 6px" class="fa fa-users" aria-hidden="true"></span>ثبت گروه جدید
             </a>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @component('components.search')
+            @endcomponent
         </div>
 
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">--}}

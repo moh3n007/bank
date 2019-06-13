@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Family;
@@ -41,9 +42,12 @@ class FamilyController extends Controller
 
     public function show(Family $family)
     {
-        $head = $family->head();
+//        $head = $family->head();
 //        dd($head);
-        return view('backend.families.show', ['family'=>$family] , ['head'=>$head]);
+        $names = Account::all();
+        $accounts = $family ->accounts()->get();
+//        dd($accounts);
+        return view('backend.families.show', compact('family','accounts','names'));
     }
 
     public function update(Request $request , Family $family)

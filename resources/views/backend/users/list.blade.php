@@ -27,8 +27,7 @@
             {{--</a>--}}
         {{--</div>--}}
 
-        <br>
-        <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="col-md-8 col-sm-8 col-xs-12" style="padding-top: 7px">
             <a href="{{ route('users.create') }}" style="color:#131313;font-size:18px;">
                 <span style="color:#129395; font-size:20px; margin-left: 6px" class="fa fa-user-plus" aria-hidden="true"></span>ثبت کاربر جدید
             </a>
