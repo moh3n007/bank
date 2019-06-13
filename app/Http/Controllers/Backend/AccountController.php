@@ -14,10 +14,15 @@ class AccountController extends Controller
     public function accountList()
     {
         $query = Account::query();
-        if(\request()->has('search_term')){
+        if(\request()->has('search_term') and \request()->get('search_term') != ''){
             $term = \request()->get('search_term');
-            $query->where(function ($query) use ($term){
-                $query->where('account_number',"$term");
+            $query->whereHas('user', function ($query) use ($term){
+                $query->where('username','like', "%$term%")
+                    ->orWhere('l_name','like', "%$term%")
+                    ->orWhere('f_name','like', "%$term%");
+            })
+            ->orWhere(function ($query) use ($term){
+                $query->where('account_number',$term);
             });
         }
 

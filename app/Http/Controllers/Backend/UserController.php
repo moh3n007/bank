@@ -15,7 +15,7 @@ class UserController extends Controller
     public function userList()
     {
         $query = User::query();
-        if(\request()->has('search_term')){
+        if(\request()->has('search_term') and \request()->get('search_term') != ''){
             $term = \request()->get('search_term');
             $query->where(function ($query) use ($term){
                 $query->where('username','like', "%$term%")

@@ -42,13 +42,31 @@ class FamilyController extends Controller
 
     public function show(Family $family)
     {
-        return view('backend.families.show', ['family'=>$family]);
+        $accounts = Account::with('user')
+            ->whereNotIn('id', $family->accounts()->pluck('id'))
+            ->get()
+            ->map(function ($item){
+            return [
+                'id' => $item->id,
+                'name'=> $item->account_number.' ('.$item->user->fullname().')'
+            ];
+        });
+        return view('backend.families.show', ['family'=>$family, 'accounts'=>$accounts]);
     }
 
     public function update(Request $request , Family $family)
     {
         $family -> update($request->all());
         return back()->with('alert.success', 'نام گروه با موفقیت تغییر یافت');
+    }
+
+    public function addAccount(Request $request, Family $family)
+    {
+        $account = Account::find($request->account_id);
+        if($family->accounts()->save($account)){
+            return back()->withInput()->with('alert.success', 'خانواده با موفقیت ثبت گردید');
+        }
+        return back()->withInput()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }
 
 }

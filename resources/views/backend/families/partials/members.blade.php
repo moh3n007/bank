@@ -1,18 +1,20 @@
 @component('forms.panel', ['title'=>'لیست اعضاء'])
 
     <div style="background-color: #e8e8e8;border-radius: 3px;height: 50px; padding-top: 9px">
-            <form action="#" method="POST">
-                <div class="form-group col-md-11">
-                    <select name="family_id" id="family_id" class="form-control">
-                        @foreach($names as $name)
-                            <option value="{{ $name->family_id }}">{{ $name->user->fullname()}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-1 text-center ">
-                    <button type="submit" class="btn btn-primary pull-left">اضافه</button>
-                </div>
-            </form>
+        <form action="{{route('families.addAccount', [$family->id])}}" method="POST">
+            {{csrf_field()}}
+            <div class="form-group col-md-11">
+                <select name="account_id" id="account_id" class="form-control">
+                    {{--TODO use ajax for fetch a account--}}
+                    @foreach($accounts as $account)
+                        <option value="{{ $account['id'] }}">{{ $account['name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-1 text-center ">
+                <button type="submit" class="btn btn-primary pull-left">اضافه</button>
+            </div>
+        </form>
     </div>
     <br><br>
 
@@ -26,7 +28,7 @@
             <th>تاریخ ایجاد</th>
             <th></th>
         </tr>
-        @foreach($accounts as $account)
+        @foreach($family->accounts as $account)
             <tr>
                 <td>{{$loop->index + 1}}</td>
                 <td class="text-center">{{ @$account->user->fullname()}}</td>
