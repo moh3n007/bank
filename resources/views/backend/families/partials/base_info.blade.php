@@ -12,16 +12,22 @@
                     'value'=>$family->name
                     ])
                 @endcomponent
-                <div class="col-md-6 text-center">
-                    <dl>
-                        <dt>نماینده گروه</dt>
-                        <dd style="margin-bottom: 10px">{{ @$family->head->f_name}}</dd>
-                    </dl>
-                </div>
             </div>
             <div class="col-md-1 col-xs-1"></div>
             <div class="col-md-1 col-xs-1" style="margin-top: 25px;">
                 <button type="submit" class="btn btn-primary">ثبت تغییر </button>
+            </div>
+            <div>
+                <dl>
+                    <div class="col-md-6 text-center">
+                        <dt>نماینده گروه</dt>
+                        <dd style="margin-bottom: 10px">{{ @$family->head->fullname()}}</dd>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <dt>تعداد اعضاء</dt>
+                        <dd style="margin-bottom: 10px">{{ @$count}}</dd>
+                    </div>
+                </dl>
             </div>
         </div>
     </form>

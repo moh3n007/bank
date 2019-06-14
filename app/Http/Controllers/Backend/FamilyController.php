@@ -48,10 +48,11 @@ class FamilyController extends Controller
             ->map(function ($item){
             return [
                 'id' => $item->id,
-                'name'=> $item->account_number.' ('.$item->user->fullname().')'
+                'name'=>$item->user->fullname() . '('.$item->account_number.')'
             ];
         });
-        return view('backend.families.show', ['family'=>$family, 'accounts'=>$accounts]);
+        $count = $family->accounts()->count('id');
+        return view('backend.families.show', ['family'=>$family, 'accounts'=>$accounts , 'count'=>$count]);
     }
 
     public function update(Request $request , Family $family)
