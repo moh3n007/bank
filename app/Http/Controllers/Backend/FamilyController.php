@@ -52,6 +52,7 @@ class FamilyController extends Controller
             ];
         });
         $count = $family->accounts()->count('id');
+        //dd($family->accounts);
         return view('backend.families.show', ['family'=>$family, 'accounts'=>$accounts , 'count'=>$count]);
     }
 

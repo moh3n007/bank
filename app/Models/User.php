@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function fullname()
     {
-        return $this->f_name.' '.$this->l_name;
+        return $this == null ? '' : $this->f_name.' '.$this->l_name;
     }
 
     /**

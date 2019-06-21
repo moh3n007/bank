@@ -11,6 +11,14 @@ class Family extends Model
         'head_id'
     ];
 
+    public function headName()
+    {
+        if($this->head == null){
+            return 'بدون نماینده گروه';
+        }
+        return $this->head->fullname();
+    }
+
     public function accounts()
     {
         return $this->hasMany(Account::class);

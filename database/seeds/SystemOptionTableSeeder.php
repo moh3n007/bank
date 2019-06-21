@@ -11,13 +11,23 @@ class SystemOptionTableSeeder extends Seeder
      */
     public function run()
     {
-        $option = new \App\Models\SystemOption ([
-
-            'name' => 'loan_factor',
-            'value' => '2',
-            'f_name' => 'ضریب وام'
-
+        \App\Models\SystemOption::truncate();
+        \App\Models\SystemOption::insert([
+            [
+                'name' => 'loan_factor',
+                'value' => '2',
+                'f_name' => 'ضریب وام'
+            ],
+            [
+                'name' => 'interval_payment',
+                'value' => '50000',
+                'f_name' => 'قسط ماهیانه برای هر حساب'
+            ],
+            [
+                'name' => 'minimal_loan_payment',
+                'value' => '200000',
+                'f_name' => 'حداقل قسط ماهیانه برای هر وام'
+            ],
         ]);
-        $option->save();
     }
 }

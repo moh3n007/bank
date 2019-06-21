@@ -4,12 +4,13 @@
         <form action="{{route('families.addAccount', [$family->id])}}" method="POST">
             {{csrf_field()}}
             <div class="form-group col-md-11">
-                <select name="account_id" id="account_id" class="form-control">
-                    {{--TODO use ajax for fetch a account--}}
-                    @foreach($accounts as $account)
-                        <option value="{{ $account['id'] }}">{{ $account['name']}}</option>
-                    @endforeach
-                </select>
+                <div class="form-group">
+                    <select name="account_id" id="account_id" class="form-control select2" style="width: 100%;">
+                        @foreach($accounts as $account)
+                            <option value="{{ $account['id'] }}">{{ $account['name']}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="col-md-1 text-center ">
                 <button type="submit" class="btn btn-primary pull-left">اضافه</button>

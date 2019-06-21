@@ -97,3 +97,16 @@
     </script>
 @endsection
 
+@push('style')
+<link rel="stylesheet" href="{{asset('admin/bower_components/select2/dist/css/select2.min.css')}}">
+@endpush
+
+@push('script')
+<script src="{{ asset('admin/bower_components/select2/dist/js/select2.min.js') }}"></script>
+<script>
+  $(document).ready(function () {
+    $('#account_id').select2();
+  })
+</script>
+@endpush
+

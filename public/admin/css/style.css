@@ -181,3 +181,6 @@ table.layout .selected{
 .setting-icons .btn{
     min-width: 25px;
 }
+.select2 *{
+    direction: rtl;
+}

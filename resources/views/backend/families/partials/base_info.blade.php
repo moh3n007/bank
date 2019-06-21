@@ -21,7 +21,7 @@
                 <dl>
                     <div class="col-md-6 text-center">
                         <dt>نماینده گروه</dt>
-                        <dd style="margin-bottom: 10px">{{ @$family->head->fullname()}}</dd>
+                        <dd style="margin-bottom: 10px">{{ @$family->headName()}}</dd>
                     </div>
                     <div class="col-md-6 text-center">
                         <dt>تعداد اعضاء</dt>
