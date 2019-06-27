@@ -74,4 +74,12 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('removeCover/{dormitory}', 'DormitoryController@removeCover')->name('removeCover');
         Route::get('active/{dormitory}/{mode}', 'DormitoryController@active');*/
     });
+
+    /** @noinspection PhpParamsInspection */
+    Route::prefix('systemOption')->name('systemOption.')->group(function() {
+        Route::get('option', 'SystemOptionController@option')->name('option');
+        Route::post('option/{option}/edit', 'SystemOptionController@edit')->name('edit');
+
+    });
+
 });

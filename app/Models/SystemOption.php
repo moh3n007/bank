@@ -10,4 +10,6 @@ class SystemOption extends Model
     {
         return SystemOption::where('name',$name)->value('value');
     }
+
+    public $timestamps = false;
 }
