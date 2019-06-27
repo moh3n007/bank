@@ -66,9 +66,16 @@ class FamilyController extends Controller
     {
         $account = Account::find($request->account_id);
         if($family->accounts()->save($account)){
-            return back()->withInput()->with('alert.success', 'خانواده با موفقیت ثبت گردید');
+            return back()->withInput()->with('alert.success', 'گروه با موفقیت ثبت گردید');
         }
         return back()->withInput()->with('alert.danger', 'خطا در ثبت اطلاعات');
+    }
+
+    public function setHead(Family $family, $user_id)
+    {
+        $family->head_id = $user_id;
+        $family->save();
+        return back();
     }
 
 }

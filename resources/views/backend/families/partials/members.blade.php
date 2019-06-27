@@ -27,6 +27,7 @@
             <th>نام و نام خانوادگی</th>
             <th>شماره حساب</th>
             <th>تاریخ ایجاد</th>
+            <th>نماینده گروه</th>
             <th></th>
         </tr>
         @foreach($family->accounts as $account)
@@ -35,6 +36,17 @@
                 <td class="text-center">{{ @$account->user->fullname()}}</td>
                 <td class="text-center">{{ $account->account_number }}</td>
                 <td class="text-center">{{ jdate($account->created_at)->format('%d %B، %Y') }}</td>
+                <td class="text-center">
+                    @if($account->user->id == $family->head_id)
+                        <a href="#">
+                            <i class="fa fa-star"></i>
+                        </a>
+                    @else
+                        <a href="{{route('families.setHead', [$family->id, $account->user->id])}}">
+                            <i class="fa fa-star-o"></i>
+                        </a>
+                    @endif
+                </td>
                 <td class="setting-icons text-center col-xs-1">
                     <a href="{{ route('accounts.show' , [$account->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                         <i class="fa fa-info"></i>

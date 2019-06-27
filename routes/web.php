@@ -48,6 +48,7 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('show/{family}', 'FamilyController@show')->name('show');
         Route::post('show/{family}/edit', 'FamilyController@update')->name('update');
         Route::post('addAccount/{family}', 'FamilyController@addAccount')->name('addAccount');
+        Route::get('setHead/{family}/{user}', 'FamilyController@setHead')->name('setHead');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
 //        Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
 //        Route::get('search', 'UserController@search')->name('search');
