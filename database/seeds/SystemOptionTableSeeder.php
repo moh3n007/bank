@@ -28,6 +28,16 @@ class SystemOptionTableSeeder extends Seeder
                 'value' => '200000',
                 'f_name' => 'حداقل قسط ماهیانه برای هر وام'
             ],
+            [
+                'name' => 'loan_payment_day',
+                'value' => '5',
+                'f_name' => 'روز پرداخت قسط وام'
+            ],
+            [
+                'name' => 'minimum_account_balance_for_loan',
+                'value' => '500000',
+                'f_name' => 'حداقل موجودی حساب جهت دریافت وام'
+            ]
         ]);
     }
 }

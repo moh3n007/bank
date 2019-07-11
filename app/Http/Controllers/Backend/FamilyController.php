@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Account;
+use App\Models\SystemOption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Family;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use function PHPSTORM_META\map;
 
 class FamilyController extends Controller
 {
@@ -52,8 +54,23 @@ class FamilyController extends Controller
             ];
         });
         $count = $family->accounts()->count('id');
-        //dd($family->accounts);
-        return view('backend.families.show', ['family'=>$family, 'accounts'=>$accounts , 'count'=>$count]);
+        $full_amount = $family->accounts();
+        $sum = $full_amount->sum('amount');
+        $min_accounts = SystemOption::all()->find('5');
+        $loan_factor = SystemOption::all()->find('1');
+        $min_loan_pay = SystemOption::all()->find('3');
+        $loan_pay_day = SystemOption::all()->find('4');
+        return view('backend.families.show', [
+            'family'=>$family,
+            'accounts'=>$accounts,
+            'count'=>$count,
+            'sum'=>$sum,
+            'min_accounts'=>$min_accounts,
+            'loan_factor'=>$loan_factor,
+            'min_loan_pay'=>$min_loan_pay,
+            'loan_pay_day'=>$loan_pay_day
+
+        ]);
     }
 
     public function update(Request $request , Family $family)

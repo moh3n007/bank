@@ -28,6 +28,11 @@
                                 <span class="pull-left"><i class="fa fa-users"></i></span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#loan_create">ایجاد وام جدید
+                                <span class="pull-left"><i class="fa fa-cc"></i></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -40,6 +45,10 @@
 
                 <div class="config-container" id="members">
                     @include('backend.families.partials.members')
+                </div>
+
+                <div class="config-container" id="loan_create">
+                    @include('backend.families.partials.loan_create')
                 </div>
 
             </div>

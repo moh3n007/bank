@@ -12,4 +12,6 @@ class SystemOption extends Model
     }
 
     public $timestamps = false;
+
+
 }

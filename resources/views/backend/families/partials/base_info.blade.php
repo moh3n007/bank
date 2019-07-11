@@ -27,6 +27,12 @@
                         <dt>تعداد اعضاء</dt>
                         <dd style="margin-bottom: 10px">{{ @$count}}</dd>
                     </div>
+                    <div class="col-md-6 text-center">
+                        <dt>موجودی کل</dt>
+                        <dd style="margin-bottom: 10px">
+                            {{ $sum }}
+                        </dd>
+                    </div>
                 </dl>
             </div>
         </div>
