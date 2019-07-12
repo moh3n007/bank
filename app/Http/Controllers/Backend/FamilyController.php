@@ -56,19 +56,15 @@ class FamilyController extends Controller
         $count = $family->accounts()->count('id');
         $full_amount = $family->accounts();
         $sum = $full_amount->sum('amount');
-        $min_accounts = SystemOption::all()->find('5');
-        $loan_factor = SystemOption::all()->find('1');
-        $min_loan_pay = SystemOption::all()->find('3');
-        $loan_pay_day = SystemOption::all()->find('4');
         return view('backend.families.show', [
             'family'=>$family,
             'accounts'=>$accounts,
             'count'=>$count,
             'sum'=>$sum,
-            'min_accounts'=>$min_accounts,
-            'loan_factor'=>$loan_factor,
-            'min_loan_pay'=>$min_loan_pay,
-            'loan_pay_day'=>$loan_pay_day
+            'min_accounts'=>SystemOption::getOption('minimum_account_balance_for_loan'),
+            'loan_factor'=>SystemOption::getOption('loan_factor'),
+            'min_loan_pay'=>SystemOption::getOption('minimal_loan_payment'),
+            'loan_pay_day'=>SystemOption::getOption('loan_payment_day')
 
         ]);
     }

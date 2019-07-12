@@ -60,6 +60,11 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
     });
 
     /** @noinspection PhpParamsInspection */
+    Route::prefix('loans')->name('loans.')->group(function() {
+        Route::post('create/{family}', 'LoanController@store')->name('create');
+    });
+
+    /** @noinspection PhpParamsInspection */
     Route::prefix('accounts')->name('accounts.')->group(function() {
         Route::get('list', 'AccountController@accountList')->name('list');
         Route::get('create', 'AccountController@createForm')->name('create');

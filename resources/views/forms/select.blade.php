@@ -7,6 +7,7 @@
 	$required = $required?? true;
 	$options = $options ?? [];
 	$selected = $selected ?? null;
+	$readonly = $readonly ?? false;
 	$error = isset($errors) && $errors->has($name)? $errors->first($name) : null;
 	$multiple = isset($multiple) && $multiple ? 'true' : 'false';
 @endphp
@@ -19,6 +20,7 @@
 	'class'=> 'text-right'
 	])
 	<select class='form-control'
+		{{$readonly ? 'readonly' : ''}}
 		name="{{ $name }}"
 		id="{{ $id }}"
 		style="width: 100%"
