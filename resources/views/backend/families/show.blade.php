@@ -30,7 +30,12 @@
                         </li>
                         <li>
                             <a href="#loan_create">ایجاد وام جدید
-                                <span class="pull-left"><i class="fa fa-cc"></i></span>
+                                <span class="pull-left"><i class="fa fa-plus-square"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#show_loan">وام های اختصاص یافته
+                                <span class="pull-left"><i class="fa fa-check-circle"></i></span>
                             </a>
                         </li>
                     </ul>
@@ -49,6 +54,10 @@
 
                 <div class="config-container" id="loan_create">
                     @include('backend.families.partials.loan_create')
+                </div>
+
+                <div class="config-container" id="show_loan">
+                    @include('backend.families.partials.show_loan')
                 </div>
 
             </div>
@@ -115,7 +124,9 @@
 <script>
   $(document).ready(function () {
     $('#account_id').select2();
+  $(".editable-text").editable("save.php");
   })
+
 </script>
 @endpush
 

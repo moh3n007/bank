@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    public function loans()
+
+    protected $fillable = [
+        'due_date',
+        'amount'
+    ];
+
+    public function loan()
     {
         return $this->belongsTo(Loan::class);
     }
+
 }

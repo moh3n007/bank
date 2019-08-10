@@ -62,7 +62,7 @@ class AccountController extends Controller
     {
         $users = User::all();
         $families = Family::all();
-        return view('backend.accounts.show',compact('account','users','families'));
+        return view('backend.accounts.show',['account'=>$account],['users'=>$users],['families'=>$families]);
     }
 
     public function Search(Request $request)

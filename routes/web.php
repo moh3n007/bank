@@ -45,8 +45,9 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('list', 'FamilyController@familyList')->name('list');
         Route::get('create/{family?}', 'FamilyController@createForm')->name('create');
         Route::post('store', 'FamilyController@store')->name('store');
-        Route::get('show/{family}', 'FamilyController@show')->name('show');
+        Route::match(['get','post'],'show/{family}', 'FamilyController@show')->name('show');
         Route::post('show/{family}/edit', 'FamilyController@update')->name('update');
+        Route::get('show/{family}/delete', 'FamilyController@delete')->name('delete');
         Route::post('addAccount/{family}', 'FamilyController@addAccount')->name('addAccount');
         Route::get('setHead/{family}/{user}', 'FamilyController@setHead')->name('setHead');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
@@ -62,6 +63,12 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
     /** @noinspection PhpParamsInspection */
     Route::prefix('loans')->name('loans.')->group(function() {
         Route::post('create/{family}', 'LoanController@store')->name('create');
+        Route::get('list', 'LoanController@loanList')->name('list');
+        Route::get('monthlyPayments', 'LoanController@monthlyPayments')->name('payments');
+        Route::get('show/{loan}', 'LoanController@show')->name('show');
+        Route::get('show/{loan}/delete', 'LoanController@delete')->name('delete');
+        Route::post('pay', 'LoanController@pay')->name('pay');
+        Route::post('payment}', 'LoanController@pay_in_show_loan')->name('payment');
     });
 
     /** @noinspection PhpParamsInspection */

@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
-    public function families()
+
+    protected $fillable = [
+        'family_id',
+        'amount',
+        'start_date',
+        'finish_date'
+
+    ];
+
+    public function family()
     {
         return $this->belongsTo(Family::class);
     }

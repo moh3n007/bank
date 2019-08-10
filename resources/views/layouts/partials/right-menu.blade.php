@@ -60,6 +60,18 @@
             <li class="header"></li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-cc"></i>
+                    <span>مدیریت وام ها</span>
+                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('loans.list') }}"><i class="fa fa-list-ol"></i><span>لیست وام ها</span></a></li>
+                    <li><a href="{{ route('loans.payments') }}"><i class="fa fa-credit-card"></i><span>اقساط ماهیانه</span></a></li>
+                </ul>
+            </li>
+            <li class="header"></li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-user-circle-o text-yellow"></i> 
                     <span>پروفایل من</span>
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>

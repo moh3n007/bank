@@ -63,7 +63,7 @@
                         <a href="{{ route('families.show' , [$family->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                             <i class="fa fa-info"></i>
                         </a>
-                        <a href="#" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف خانواده">
+                        <a href="{{ route('families.delete' , [$family->id]) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف گروه">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>
