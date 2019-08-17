@@ -70,7 +70,7 @@
                         <a href="{{ route('accounts.show' , [$account->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                             <i class="fa fa-info"></i>
                         </a>
-                        <a href="{{ route('accounts.delete', [$account->id]) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف حساب">
+                        <a href="{{ route('accounts.delete', [$account->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف حساب">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>
@@ -80,3 +80,10 @@
     @endcomponent
 @endsection
 
+@section('script')
+    <script language="JavaScript" type="text/javascript">
+        function checkDelete(){
+            return confirm('آیا مطمئن هستید؟');
+        }
+    </script>
+@endsection

@@ -1,6 +1,6 @@
 @php
-    $max_loan = isset($max_loan) ? $max_loan : (int)$sum* (int)$loan_factor;
-    $pay_count = $max_loan/ (int)$min_loan_pay;
+    $max_loan = isset($max_loan) ? $max_loan : (int)$sum * (int)$loan_factor;
+    $pay_count = $max_loan / (int)$min_loan_pay;
 
     $now = isset($pay_date_1) ? $pay_date_1->subMonths(1) : jdate();
     if($now->getDay() > (int)$loan_pay_day){

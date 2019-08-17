@@ -43,14 +43,14 @@ class LoanController extends Controller
         );
 //        dd($request->all());
         $max_loan = (int)$sum* (int)$loan_factor;
-        $temp = $max_loan/ $min_loan_pay;
+        $temp = $max_loan / $min_loan_pay;
         $pay_count = intval($temp);
-        if ($temp>0) {
+        if (($max_loan % (int)$min_loan_pay)>0) {
             $pay_count++;
         }
 
         $payments = [];
-        for ($i=1;$i<=$pay_count;$i++) {
+        for ($i=1;$i<$pay_count;$i++) {
             //$pay_date_year_.$i = "$request->pay_date_day_".$i,
             $year = $request['pay_date_year_'.$i];
             $month = str_pad($request['pay_date_month_'.$i],2,0,STR_PAD_LEFT);

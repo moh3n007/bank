@@ -29,7 +29,7 @@
                     <a href="{{ route('loans.show' , [$loan->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
                         <i class="fa fa-info"></i>
                     </a>
-                    <a href="{{ route('loans.delete' , [$loan->id]) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="حذف وام">
+                    <a href="{{ route('loans.delete' , [$loan->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف وام">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
@@ -37,4 +37,12 @@
         @endforeach
     </table>
     @endcomponent
+@endsection
+
+@section('script')
+    <script language="JavaScript" type="text/javascript">
+        function checkDelete(){
+            return confirm('آیا مطمئن هستید؟');
+        }
+    </script>
 @endsection

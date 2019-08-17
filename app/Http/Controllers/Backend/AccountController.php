@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Account;
 use App\Models\Family;
+use App\Models\Interval;
+use App\Models\Payment;
 use App\Models\SystemOption;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class AccountController extends Controller
@@ -89,6 +93,29 @@ class AccountController extends Controller
             return back()->with('alert.warning','حساب با موفقیت حذف گردید');
         }
         return back()->with('alert.danger', 'خطا در حذف اطلاعات');
+    }
+
+    public function monthlyIntervals()
+    {
+
+        $now = jdate();
+        $year = (string)$now->getYear();
+        $month = str_pad($now->getMonth(),2,0,STR_PAD_LEFT);
+        $firstDay = jdate()->fromformat('Y-m-d',"$year-$month-01");
+        $lastDay = $firstDay->getNextMonth();
+        $payedAccountIds = Interval::where('pay_date', '>=', $firstDay->toCarbon())
+            ->where('pay_date', '<', $lastDay->toCarbon())
+            ->pluck('account_id');
+        $accounts = Account::with('user')->get();
+
+        return view('backend.intervals.monthlyIntervals' , ['accounts'=>$accounts , 'payedAccountIds'=>$payedAccountIds]);
+    }
+
+    public function pay(Request $request)
+    {
+        unset($request['_token']);
+        $result = Interval::whereIn('id', array_keys($request->all()))->update(['pay_date' => Carbon::now()]);
+        dd($result);
     }
 
 }
