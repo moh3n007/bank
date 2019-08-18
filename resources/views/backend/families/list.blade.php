@@ -48,27 +48,31 @@
         {{--</ul>--}}
         {{--</div>--}}
         <table class="table table-responsive table-striped">
-            <tr>
-                <th>#</th>
-                <th>نام خانواده</th>
-                <th>تاریخ ایجاد</th>
-                <th></th>
-            </tr>
-            @foreach($families as $family)
+            @if($families == "")
+                <span style="color: red;">هیچ گروهی ثبت نشده است</span>
+            @else
                 <tr>
-                    <td>{{$loop->index + 1}}</td>
-                    <td class="text-center">{{ $family->name }}</td>
-                    <td class="text-center">{{ jdate($family->created_at)->format('%B %d، %Y') }}</td>
-                    <td class="setting-icons text-center col-xs-1">
-                        <a href="{{ route('families.show' , [$family->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
-                            <i class="fa fa-info"></i>
-                        </a>
-                        <a href="{{ route('families.delete' , [$family->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف گروه">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </td>
+                    <th>#</th>
+                    <th>نام خانواده</th>
+                    <th>تاریخ ایجاد</th>
+                    <th></th>
                 </tr>
-            @endforeach
+                @foreach($families as $family)
+                    <tr>
+                        <td>{{$loop->index + 1}}</td>
+                        <td class="text-center">{{ $family->name }}</td>
+                        <td class="text-center">{{ jdate($family->created_at)->format('%B %d، %Y') }}</td>
+                        <td class="setting-icons text-center col-xs-1">
+                            <a href="{{ route('families.show' , [$family->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
+                                <i class="fa fa-info"></i>
+                            </a>
+                            <a href="{{ route('families.delete' , [$family->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف گروه">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
         </table>
     @endcomponent
 @endsection

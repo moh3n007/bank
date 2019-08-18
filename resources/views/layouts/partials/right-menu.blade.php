@@ -36,18 +36,6 @@
             <li class="header"></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-money"></i>
-                    <span>مدیریت حساب</span>
-                    <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('accounts.create') }}"><i class="fa fa-plus-square"></i><span>ثبت حساب</span></a></li>
-                    <li><a href="{{ route('accounts.list') }}"><i class="fa fa-list-ol"></i><span> لیست حساب ها</span></a></li>
-                </ul>
-            </li>
-            <li class="header"></li>
-            <li class="treeview">
-                <a href="#">
                     <i class="fa fa-users"></i>
                     <span>مدیریت گروه ها</span>
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
@@ -55,6 +43,18 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('families.create') }}"><i class="fa fa-user-plus"></i><span>ثبت گروه</span></a></li>
                     <li><a href="{{ route('families.list') }}"><i class="fa fa-list-ol"></i><span>لیست گروه ها</span></a></li>
+                </ul>
+            </li>
+            <li class="header"></li>
+            <li class="treeview">
+            <a href="#">
+            <i class="fa fa-money"></i>
+            <span>مدیریت حساب</span>
+            <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                    <li><a href="{{ route('accounts.create') }}"><i class="fa fa-plus-square"></i><span>ثبت حساب</span></a></li>
+                    <li><a href="{{ route('accounts.list') }}"><i class="fa fa-list-ol"></i><span> لیست حساب ها</span></a></li>
                 </ul>
             </li>
             <li class="header"></li>
@@ -73,13 +73,13 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-cc"></i>
-                    <span>مدیریت پرداختی ها</span>
+                    <span>مدیریت پرداخت ماهیانه</span>
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('intervals.intervals') }}"><i class="fa fa-list-ol"></i><span>لیست پرداختی ها</span></a></li>
+                    <li><a href="{{ route('intervals.intervals') }}"><i class="fa fa-list-ol"></i><span>لیست پرداخت</span></a></li>
+                    <li><a href="{{ route('intervals.history') }}"><i class="fa fa-list-ol"></i><span>تاریخچه پرداخت</span></a></li>
                 </ul>
-            </li>
             <li class="header"></li>
             <li class="treeview">
                 <a href="#">

@@ -16,7 +16,7 @@ class PaymentTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('loan_id')->unsigned()->nullable();
-            $table->foreign('loan_id')->references('id')->on('loans');
+            $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');
             $table->integer('amount');
             $table->date('due_date')->nullable();
             $table->dateTime('pay_date')->nullable();

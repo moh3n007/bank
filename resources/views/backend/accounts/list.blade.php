@@ -49,33 +49,37 @@
         {{--</ul>--}}
         {{--</div>--}}
         <table class="table table-responsive table-striped">
-            <tr>
-                <th>#</th>
-                <th>نام دارنده حساب</th>
-                <th>نام گروه</th>
-                <th>شماره حساب</th>
-                <th>موجودی اولیه حساب</th>
-                <th>تاریخ ایجاد</th>
-                <th></th>
-            </tr>
-            @foreach($accounts as $account)
+            @if($accounts == "")
+                 <span style="color: red;">هیچ حسابی ثبت نشده است</span>
+            @else
                 <tr>
-                    <td>{{$loop->index + 1}}</td>
-                    <td class="text-center">{{ @$account->user->fullname()}}</td>
-                    <td class="text-center">{{ @$account->family->name }}</td>
-                    <td class="text-center">{{ $account->account_number }}</td>
-                    <td class="text-center">{{ $account->amount }}</td>
-                    <td class="text-center">{{ jdate($account->created_at)->format('%B %d، %Y') }}</td>
-                    <td class="setting-icons text-center col-xs-1">
-                        <a href="{{ route('accounts.show' , [$account->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
-                            <i class="fa fa-info"></i>
-                        </a>
-                        <a href="{{ route('accounts.delete', [$account->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف حساب">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </td>
+                    <th>#</th>
+                    <th>نام دارنده حساب</th>
+                    <th>نام گروه</th>
+                    <th>شماره حساب</th>
+                    <th>موجودی اولیه حساب</th>
+                    <th>تاریخ ایجاد</th>
+                    <th></th>
                 </tr>
-            @endforeach
+                @foreach($accounts as $account)
+                    <tr>
+                        <td>{{$loop->index + 1}}</td>
+                        <td class="text-center">{{ @$account->user->fullname()}}</td>
+                        <td class="text-center">{{ @$account->family->name }}</td>
+                        <td class="text-center">{{ @$account->account_number }}</td>
+                        <td class="text-center">{{ @$account->amount }}</td>
+                        <td class="text-center">{{ @jdate($account->created_at)->format('%B %d، %Y') }}</td>
+                        <td class="setting-icons text-center col-xs-1">
+                            <a href="{{ route('accounts.show' , [$account->id]) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
+                                <i class="fa fa-info"></i>
+                            </a>
+                            <a href="{{ route('accounts.delete', [$account->id]) }}" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف حساب">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
         </table>
     @endcomponent
 @endsection

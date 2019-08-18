@@ -13,11 +13,16 @@
                 @foreach($accounts as $account)
                     <tr>
                         <td>{{$loop->index + 1}}</td>
-                        <td>{{ $account->user->fullname() }}</td>
-                        <td>{{ $account->account_number }}</td>
-                        <td>{{ in_array($account->id, $payedAccountIds->toArray()) ? 'are' : 'na' }}</td>
+                        <td class="text-center" id="{{ $account->id }}">{{ $account->user->fullname() }}</td>
+                        <td class="text-center">{{ $account->account_number }}</td>
+                        <td class="text-center">
+                            @if(in_array($account->id , $payedAccountIds->toArray()))
+                                <span class="btn btn-success" style="padding:3px;font-size: 11px">پرداخت شد</span>
+                            @endif
+                        </td>
+                        {{--<td class="text-center">{{ in_array($account->id, $payedAccountIds->toArray()) ? 'are' : 'na' }}</td>--}}
                         <td class="setting-icons text-center col-xs-1">
-                            <input type="checkbox" name="{{$account->id}}" id="checkbox" {{ $account->pay_date ? 'checked disabled="disabled"' : '' }}>
+                            <input type="checkbox" name="{{$account->id}}" id="checkbox" {{ in_array($account->id, $payedAccountIds->toArray()) ? 'checked disabled="disabled"' : '' }}>
                         </td>
                     </tr>
                 @endforeach

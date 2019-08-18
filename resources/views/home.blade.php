@@ -1,3 +1,7 @@
+@php
+$all = $accounts+$intervals+$payments-$loans;
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
@@ -14,7 +18,21 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                        <div class="col-md-8">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">در یک نگاه</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" style="height: 40px">
+                                            <span class="col-md-9">موجودی کل صندوق :</span>
+                                            <span class="col-md-3"  @if($all < 0) style="color: red"  @endif>{{ abs($all) }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,12 @@
+@php
+    $now = jdate();
+    $year = (string)$now->getYear();
+    $month = str_pad($now->getMonth(),2,0,STR_PAD_LEFT);
+    $firstDay = jdate()->fromformat('Y-m-d',"$year-$month-01");
+    $lastDay = $firstDay->getNextMonth();
+@endphp
+
+
 @component('forms.panel', ['title'=>'لیست پرداختی معوقه'])
 
     <form action="#" method="post">
@@ -10,7 +19,6 @@
                 <th>تاریخ پرداخت</th>
                 <th><input type="checkbox" id="check_all" /></th>
             </tr>
-
         </table>
         <br>
         <hr>

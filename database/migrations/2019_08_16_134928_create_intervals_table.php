@@ -16,7 +16,7 @@ class CreateIntervalsTable extends Migration
         Schema::create('intervals', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id')->unsigned()->nullable();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->integer('amount');
             $table->dateTime('pay_date')->nullable();
             $table->timestamps();

@@ -17,7 +17,7 @@ class FamilyAccounts extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('head_id')->unsigned()->nullable();
-            $table->foreign('head_id')->references('id')->on('users');
+            $table->foreign('head_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

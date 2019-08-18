@@ -110,7 +110,7 @@ class LoanController extends Controller
     {
         unset($request['_token']);
         $result = Payment::whereIn('id', array_keys($request->all()))->update(['pay_date' => Carbon::now()]);
-        dd($result);
+//        dd($request->all());
         if ($result) {
             return back()->with('alert.success', 'پرداخت قسط با موفیقت انجام گرفت');
         }

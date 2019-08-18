@@ -21,7 +21,7 @@ class LoanTable extends Migration
             $table->date('finish_date')->nullable();
             $table->enum('status', ['in_progress', 'finished'])->default('in_progress');
             $table->integer('family_id')->unsigned()->nullable();
-            $table->foreign('family_id')->references('id')->on('families');
+            $table->foreign('family_id')->references('id')->on('families')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -8,11 +8,12 @@ class Interval extends Model
 {
 
     protected $fillable = [
-        'due_date',
-        'amount'
+        'pay_date',
+        'amount',
+        'account_id'
     ];
 
-    public function loan()
+    public function account()
     {
         return $this->belongsTo(Account::class);
     }

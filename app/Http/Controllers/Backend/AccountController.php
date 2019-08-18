@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rules\In;
 
 class AccountController extends Controller
 {
@@ -114,8 +115,29 @@ class AccountController extends Controller
     public function pay(Request $request)
     {
         unset($request['_token']);
-        $result = Interval::whereIn('id', array_keys($request->all()))->update(['pay_date' => Carbon::now()]);
-        dd($result);
+        $result = array();
+        foreach ($request->all() as $key=>$value) {
+            $result[] = [
+
+                    'pay_date' => Carbon::now(),
+                    'amount' => SystemOption::getOption('interval_payment'),
+                    'account_id' => $key
+
+            ];
+        }
+//        dd($result);
+        Interval::insert($result);
+
+        if ($result) {
+            return back()->with('alert.success', 'پرداخت با موفیقت انجام گرفت');
+        }
+        return back()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }
 
+    public function history()
+    {
+        $intervals = Interval::with('account')->get();
+//        dd($intervals);
+        return view('backend.intervals.history' , ['intervals' => $intervals]);
+    }
 }
