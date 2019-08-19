@@ -16,6 +16,7 @@ class LoanController extends Controller
     public function loanList()
     {
         $loans = Loan::paginate($this->pagination_number);
+//        dd($loans->all());
         return view('backend.loans.list', ['loans'=>$loans]);
     }
 

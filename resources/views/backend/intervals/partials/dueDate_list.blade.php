@@ -1,5 +1,12 @@
+@php
+    $emptyIntervals = $dueIntervals->where('pay_date',null)->pluck('pay_date')->all();
+@endphp
+
 @component('forms.panel', ['title'=>'لیست پرداختی جاری'])
 
+    @if($emptyIntervals == null)
+        <span style="color: red">اطلاعاتی جهت نمایش وجود ندارد</span>
+    @else
     <form action="{{ route('intervals.pay') }}" method="post">
         {{ csrf_field() }}
         <table class="table table-responsive table-striped">
@@ -7,22 +14,16 @@
                     <th>#</th>
                     <th>نام دارنده حساب</th>
                     <th>شماره حساب</th>
-                    <th>وضعیت پرداخت</th>
                     <th><input type="checkbox" id="check_all" /></th>
                 </tr>
-                @foreach($accounts as $account)
+                @foreach($dueIntervals as $dueInterval)
                     <tr>
                         <td>{{$loop->index + 1}}</td>
-                        <td class="text-center" id="{{ $account->id }}">{{ $account->user->fullname() }}</td>
-                        <td class="text-center">{{ $account->account_number }}</td>
-                        <td class="text-center">
-                            @if(in_array($account->id , $payedAccountIds->toArray()))
-                                <span class="btn btn-success" style="padding:3px;font-size: 11px">پرداخت شد</span>
-                            @endif
-                        </td>
+                        <td class="text-center">{{ @$dueInterval->account->user->fullname() }}</td>
+                        <td class="text-center">{{ @$dueInterval->account->account_number }}</td>
                         {{--<td class="text-center">{{ in_array($account->id, $payedAccountIds->toArray()) ? 'are' : 'na' }}</td>--}}
                         <td class="setting-icons text-center col-xs-1">
-                            <input type="checkbox" name="{{$account->id}}" id="checkbox" {{ in_array($account->id, $payedAccountIds->toArray()) ? 'checked disabled="disabled"' : '' }}>
+                            <input type="checkbox" name="{{$dueInterval->id}}" id="checkbox">
                         </td>
                     </tr>
                 @endforeach
@@ -31,6 +32,7 @@
             <hr>
             <button type="submit" class="btn btn-primary">ثبت پرداختی</button>
     </form>
+    @endif
 @endcomponent
 @push('script')
 <script>

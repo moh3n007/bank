@@ -97,8 +97,10 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
 
     /** @noinspection PhpParamsInspection */
     Route::prefix('intervals')->name('intervals.')->group(function() {
-        Route::get('monthlyIntervals', 'accountController@monthlyIntervals')->name('intervals');
-        Route::get('intervalHistory', 'accountController@history')->name('history');
+        Route::get('monthlyIntervals', 'AccountController@monthlyIntervals')->name('intervals');
+        Route::get('intervalHistory', 'AccountController@history')->name('history');
+        Route::get('showIntervals', 'AccountController@showIntervals')->name('show');
+        Route::post('showIntervals', 'AccountController@storeIntervals')->name('store');
         Route::post('pay', 'AccountController@pay')->name('pay');
     });
 

@@ -16,7 +16,6 @@
             <th>مقدار پرداختی</th>
             <th>شماره حساب</th>
             <th>تاریخ پرداخت</th>
-            <th></th>
         </tr>
         @foreach($intervals as $interval)
             <tr>
@@ -24,15 +23,7 @@
                 <td class="text-center">{{ @$interval->account->user->fullname() }}</td>
                 <td class="text-center">{{ @$interval->amount }}</td>
                 <td class="text-center">{{ @$interval->account->account_number }}</td>
-                <td class="text-center">{{ @$interval->pay_date }}</td>
-                <td class="setting-icons text-center col-xs-1">
-                    <a href="#" class="btn btn-xs btn-primary" data-toggle="tooltip" title="نمایش کامل اطلاعات">
-                        <i class="fa fa-info"></i>
-                    </a>
-                    <a href="#" class="btn btn-xs btn-danger" onclick="return checkDelete()" data-toggle="tooltip" title="حذف وام">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
+                <td class="text-center">{{ @jdate($interval->pay_date)->format('%d , %B ، %Y') }}</td>
             </tr>
         @endforeach
     </table>

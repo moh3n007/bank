@@ -48,7 +48,7 @@
         {{--</ul>--}}
         {{--</div>--}}
         <table class="table table-responsive table-striped">
-            @if($families == "")
+            @if($families == null)
                 <span style="color: red;">هیچ گروهی ثبت نشده است</span>
             @else
                 <tr>

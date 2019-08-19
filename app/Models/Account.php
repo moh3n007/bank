@@ -23,4 +23,9 @@ class Account extends Model
     {
         return $this->belongsTo(Family::class);
     }
+
+    public function intervals()
+    {
+        return $this->hasMany(Interval::class);
+    }
 }

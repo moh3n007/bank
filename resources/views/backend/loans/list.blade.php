@@ -10,7 +10,7 @@
     @component('forms.panel', ['title'=>'لیست وام ها'])
 
     <table class="table table-responsive table-striped">
-        @if($loans == "")
+        @if(is_null($loans ))
             <span style="color: red;">هیچ وامی برای نمایش وجود ندارد</span>
         @else
             <tr>

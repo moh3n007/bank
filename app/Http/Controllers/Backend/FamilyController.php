@@ -17,6 +17,7 @@ class FamilyController extends Controller
     public function familyList()
     {
         $families = Family::paginate($this->pagination_number);
+//        dd($families->all());
         return view('backend.families.list', ['families'=>$families]);
     }
 
@@ -49,11 +50,14 @@ class FamilyController extends Controller
             ->whereNotIn('id', $family->accounts()->pluck('id'))
             ->get()
             ->map(function ($item){
-            return [
-                'id' => $item->id,
-                'name'=>$item->user->fullname() . '('.$item->account_number.')'
-            ];
+                if ($item->user !== null) {
+                    return [
+                        'id' => $item->id,
+                        'name' => $item->user->fullname() . '(' . $item->account_number . ')'
+                    ];
+                }
         });
+
         $count = $family->accounts()->count('id');
         $full_amount = $family->accounts();
         $sum = $full_amount->sum('amount');

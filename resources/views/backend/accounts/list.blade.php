@@ -49,7 +49,7 @@
         {{--</ul>--}}
         {{--</div>--}}
         <table class="table table-responsive table-striped">
-            @if($accounts == "")
+            @if($accounts == null)
                  <span style="color: red;">هیچ حسابی ثبت نشده است</span>
             @else
                 <tr>

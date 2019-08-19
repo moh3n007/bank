@@ -10,7 +10,8 @@ class Interval extends Model
     protected $fillable = [
         'pay_date',
         'amount',
-        'account_id'
+        'account_id',
+        'month'
     ];
 
     public function account()

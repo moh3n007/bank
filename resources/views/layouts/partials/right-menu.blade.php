@@ -77,9 +77,10 @@
                     <span class="pull-left-container"><i class="fa fa-angle-right pull-left"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('intervals.intervals') }}"><i class="fa fa-list-ol"></i><span>لیست پرداخت</span></a></li>
+                    <li><a href="{{ route('intervals.show') }}"><i class="fa fa-list-ol"></i><span>لیست پرداخت</span></a></li>
                     <li><a href="{{ route('intervals.history') }}"><i class="fa fa-list-ol"></i><span>تاریخچه پرداخت</span></a></li>
                 </ul>
+            </li>
             <li class="header"></li>
             <li class="treeview">
                 <a href="#">
