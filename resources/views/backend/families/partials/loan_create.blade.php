@@ -12,13 +12,19 @@
     $months = [];
     for($i=1; $i<=12; $i++)
         $months[$i] = $i;
+
+    $accounts = \App\Models\Account::sum('amount');
+    $intervals = \App\Models\Interval::whereNotNull('pay_date')->sum('amount');
+    $loans = \App\Models\Loan::sum('amount');
+    $payments = \App\Models\Payment::whereNotNull('pay_date')->sum('amount');
+    $fullAmount = $accounts + $intervals + $payments - $loans;
+    if ($max_loan<=$fullAmount) {$loan_amount = $max_loan;} else {$loan_amount = $fullAmount;}
 @endphp
 
 @component('forms.panel', ['title'=>'اختصاص وام'])
 
-@if($sum<$min_accounts)
-
-    <span style="color: red">موجودی حساب این گروه برای دریافت وام کافی نمی باشد</span>
+    @if($sum<$min_accounts)
+        <span style="color: red">موجودی حساب این گروه برای دریافت وام کافی نمی باشد</span>
 
     @else
     <form action="{{route('loans.create', [$family->id])}}" method="post" id="loan_form">
@@ -32,7 +38,7 @@
                 @component('forms.input', [
                     'name'=>'amount',
                     'label'=>'مقدار وام اخصاص یافته',
-                    'value'=>$max_loan
+                    'value'=>$loan_amount
                     ])
                 @endcomponent
                 @component('forms.input', [

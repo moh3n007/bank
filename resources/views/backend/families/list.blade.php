@@ -74,6 +74,7 @@
                 @endforeach
             @endif
         </table>
+        {{ $families->links() }}
     @endcomponent
 @endsection
 

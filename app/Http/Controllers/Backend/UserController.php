@@ -105,6 +105,7 @@ class UserController extends Controller
 
     public function update(Request $request , User $user)
     {
+        $request['password'] = Hash::make($request->password);
         $user -> update($request->all());
         return Redirect::route('users.list')->with('alert.success', 'اطلاعات کاربر با موفقیت تغییر یافت');
     }

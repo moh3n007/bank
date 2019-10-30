@@ -78,7 +78,7 @@
           $('#'+hash).fadeIn();
           // set session
           $.ajax({
-            url: "{{url('panel/ajax/setPartialPage')}}",
+            url: "{{url('ajax/setPartialPage')}}",
             'type': 'get',
             data: { partial: hash },
             success: function(data){

@@ -18,7 +18,6 @@ class CreateIntervalsTable extends Migration
             $table->integer('account_id')->unsigned()->nullable();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->integer('amount');
-            $table->integer('month');
             $table->dateTime('pay_date')->nullable();
             $table->timestamps();
         });

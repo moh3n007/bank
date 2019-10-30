@@ -28,11 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $accounts = Account::sum('amount');
         $intervals = Interval::whereNotNull('pay_date')->sum('amount');
         $loans = Loan::sum('amount');
         $payments = Payment::whereNotNull('pay_date')->sum('amount');
 //        dd($payments);
-        return view('home' , ['accounts' => $accounts , 'intervals' => $intervals , 'loans' => $loans , 'payments' => $payments]);
+        return view('home' , ['intervals' => $intervals , 'loans' => $loans , 'payments' => $payments]);
     }
 }

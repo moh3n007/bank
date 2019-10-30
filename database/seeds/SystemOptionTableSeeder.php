@@ -37,6 +37,16 @@ class SystemOptionTableSeeder extends Seeder
                 'name' => 'minimum_account_balance_for_loan',
                 'value' => '500000',
                 'f_name' => 'حداقل موجودی حساب جهت دریافت وام'
+            ],
+            [
+                'name' => 'pay_factor_for_more_than_one_account',
+                'value' => '0.7',
+                'f_name' => 'ضریب قسط وام برای بیش از یک حساب'
+            ],
+            [
+                'name' => 'year_for_show_interval',
+                'value' => '1398',
+                'f_name' => 'تاریخ ابتدای نمایش در پرداختی ها'
             ]
         ]);
     }

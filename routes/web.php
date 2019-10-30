@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('ajax/setPartialPage', function(){
+    session(['partial_view'=>\Illuminate\Support\Facades\Input::get('partial')]);
+    response()->json(['results' => 'success'], 200);
+});
 
 
 /** @noinspection PhpParamsInspection */
@@ -50,6 +54,7 @@ Route::namespace('Backend')->middleware(['auth','admins'])->group(function () {
         Route::get('show/{family}/delete', 'FamilyController@delete')->name('delete');
         Route::post('addAccount/{family}', 'FamilyController@addAccount')->name('addAccount');
         Route::get('setHead/{family}/{user}', 'FamilyController@setHead')->name('setHead');
+        Route::get('search', 'FamilyController@search')->name('search');
 //        Route::get('show/{user}/edit', 'UserController@edit')->name('edit');
 //        Route::get('show/{user}/delete', 'UserController@delete')->name('delete');
 //        Route::get('search', 'UserController@search')->name('search');

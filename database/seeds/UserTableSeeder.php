@@ -12,6 +12,7 @@ class UserTableSeeder extends Seeder
 
     public function run()
     {
+        //TODO
         \App\Models\User::truncate();
         \App\Models\User::insert([
             [

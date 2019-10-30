@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Account;
+use App\Models\Interval;
 use App\Models\Loan;
 use App\Models\SystemOption;
 use App\Models\User;
@@ -16,9 +17,26 @@ class FamilyController extends Controller
 {
     public function familyList()
     {
-        $families = Family::paginate($this->pagination_number);
+        $query = Family::query();
+        if(\request()->has('search_term') and \request()->get('search_term') != ''){
+            $term = \request()->get('search_term');
+            $query->where(function ($query) use ($term){
+                $query->where('name','like', "%$term%");
+            });
+        }
+        $families = $query->paginate($this->pagination_number);
 //        dd($families->all());
         return view('backend.families.list', ['families'=>$families]);
+    }
+
+    public function Search(Request $request)
+    {
+        if($request->has('search')){
+            $families = Family::search($request->get('search'))->get();
+        }else{
+            $families = Family::get();
+        }
+        return view('backend.families.list', compact('families'));
     }
 
     public function createForm(Family $family = null)
@@ -57,9 +75,12 @@ class FamilyController extends Controller
                     ];
                 }
         });
+//        dd($accounts);
 
         $count = $family->accounts()->count('id');
-        $full_amount = $family->accounts();
+        $account_id = $family->accounts()->pluck('id');
+        $full_amount = Interval::with('account')
+        ->whereIn('account_id',$account_id)->get();
         $sum = $full_amount->sum('amount');
         $count_loan = $family->loans()->count('id');
         if ($request->isMethod('post')){

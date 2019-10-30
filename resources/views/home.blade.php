@@ -1,5 +1,5 @@
 @php
-$all = $accounts+$intervals+$payments-$loans;
+$all = $intervals+$payments-$loans;
 @endphp
 
 @extends('layouts.master')
@@ -26,8 +26,8 @@ $all = $accounts+$intervals+$payments-$loans;
                                 <div class="panel-body">
                                     <ul class="list-group">
                                         <li class="list-group-item" style="height: 40px">
-                                            <span class="col-md-9">موجودی کل صندوق :</span>
-                                            <span class="col-md-3"  @if($all < 0) style="color: red"  @endif>{{ abs($all) }}</span>
+                                            <span class="col-md-8">موجودی کل صندوق :</span>
+                                            <span class="col-md-4"  @if($all < 0) style="color: red"  @endif> {{ abs($all) }} تومان</span>
                                         </li>
                                     </ul>
                                 </div>

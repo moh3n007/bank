@@ -81,6 +81,7 @@
                 @endforeach
             @endif
         </table>
+        {{ $accounts->links() }}
     @endcomponent
 @endsection
 

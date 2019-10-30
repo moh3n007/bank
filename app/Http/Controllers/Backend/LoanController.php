@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Account;
 use App\Models\Family;
+use App\Models\Interval;
 use App\Models\Loan;
 use App\Models\Payment;
 use App\Models\SystemOption;
@@ -22,26 +24,57 @@ class LoanController extends Controller
 
     public function show(Loan $loan)
     {
+
         return view('backend.loans.show' , ['loan'=>$loan]);
     }
 
     public function store(Request $request, Family $family)
     {
+        $accounts = Account::sum('amount');
+        $intervals = Interval::whereNotNull('pay_date')->sum('amount');
+        $loans = Loan::sum('amount');
+        $payments = Payment::whereNotNull('pay_date')->sum('amount');
+        $sum_all_monies = $intervals - $loans + $payments;
+
         $loan_factor = SystemOption::getOption('loan_factor');
-        $sum = $family->accounts()->sum('amount');
+        $account_id = $family->accounts()->pluck('id');
+        $full_amount = Interval::with('account')
+        ->whereIn('account_id',$account_id)->get();
+        $sum = $full_amount->sum('amount');
         $max = $loan_factor * $sum;
+//        if ($family->accounts()->count('id')>1) {
+//            $pay_factor = SystemOption::getOption('pay_factor_for_more_than_one_account');
+//            $min_loan_pay_from_db = SystemOption::getOption('minimal_loan_payment');
+//            $count_account = $family->accounts()->count('id');
+//            $min_loan_pay = intval($min_loan_pay_from_db + $pay_factor*$count_account*$min_loan_pay_from_db);
+//        } else {
+//            $min_loan_pay = SystemOption::getOption('minimal_loan_payment');
+//        }
         $min_loan_pay = SystemOption::getOption('minimal_loan_payment');
+//        dd($min_loan_pay);
+        if ($sum_all_monies>$max) {
         $request->validate(
             [
-                'amount' => "required|numeric|max:$max|min:0",
+                    'amount' => "required|numeric|max:$max+1|min:0",
                 'min_loan_pay' => "numeric|min:$min_loan_pay"
             ],
             [
                 'amount.required' => 'لطفا مقدار وام را وارد کنید',
                 'amount.max'=> 'مقدار وام اختصاص یافته بیش از سقف مجاز است',
-                'min_loan_pay.min' => 'خیلی خری'
+                'min_loan_pay.min' => 'مقدار قسط ماهیانه کمتر از مقدار حداقل مجاز می باشد'
             ]
-        );
+        );} else {
+            $request->validate(
+                [
+                    'amount' => "required|numeric|max:$sum_all_monies|min:0",
+                    'min_loan_pay' => "numeric|min:$min_loan_pay"
+                ],
+                [
+                    'amount.required' => 'لطفا مقدار وام را وارد کنید',
+                    'amount.max'=> 'مقدار وام اختصاص یافته بیش از موجودی صندوق است',
+                    'min_loan_pay.min' => 'مقدار قسط ماهیانه کمتر از مقدار حداقل مجاز می باشد'
+                ]
+            );};
 //        dd($request->all());
         $max_loan = (int)$sum* (int)$loan_factor;
         $temp = $max_loan / $min_loan_pay;
@@ -49,6 +82,7 @@ class LoanController extends Controller
         if (($max_loan % (int)$min_loan_pay)>0) {
             $pay_count++;
         }
+//        dd($pay_count);
 
         $payments = [];
         for ($i=1;$i<$pay_count;$i++) {
@@ -60,7 +94,7 @@ class LoanController extends Controller
             $amount = $request->get('pay_amount_'.$i);
             $payments[] = new Payment([
                 'due_date' => $date,
-                'amount' => $amount
+                'amount' => $amount,
             ]);
         }
 

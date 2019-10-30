@@ -96,12 +96,18 @@ class AccountController extends Controller
         return back()->with('alert.danger', 'خطا در حذف اطلاعات');
     }
 
-    public function showIntervals()
+    public function showIntervals(Request $request)
     {
         $amount = SystemOption::getOption('interval_payment');
         $now = jdate();
         $year = (string)$now->getYear();
-        $month = str_pad($now->getMonth(),2,0,STR_PAD_LEFT);
+        $month = $now->getMonth();
+
+        if($request->has('year')){
+            $year = (string)$request->year;
+            $month = (int)$request->month;
+        }
+        $month = str_pad($month,2,0,STR_PAD_LEFT);
         $firstDay = jdate()->fromformat('Y-m-d',"$year-$month-01");
         $lastDay = $firstDay->getNextMonth();
         $payedAccountIds = Interval::where('pay_date', '>=', $firstDay->toCarbon())
@@ -109,29 +115,41 @@ class AccountController extends Controller
             ->pluck('account_id');
         $accounts = Account::with('user','intervals')->get();
 
-        return view('backend.intervals.showIntervals' , ['accounts'=>$accounts , 'payedAccountIds'=>$payedAccountIds , 'amount' =>$amount]);
+        return view('backend.intervals.showIntervals' , [
+            'accounts'=>$accounts ,
+            'payedAccountIds'=>$payedAccountIds ,
+            'amount' =>$amount,
+            'first_year'=> SystemOption::getOption('year_for_show_interval'),
+            'current_year'=> $year,
+            'current_month'=> $month
+        ]);
     }
 
     public function storeIntervals(Request $request)
     {
+
         unset($request['_token']);
-        $result = array();
+        $month = str_pad($request->month,2,0,STR_PAD_LEFT);
+        $year = $request->year;
+        $pay_date = jdate()->fromformat('Y-m-d',"$year-$month-01");
+//        dd($pay_date);
+
+        unset($request['year']);
+        unset($request['month']);
+//        dd($request->all());
+        $result = [];
         foreach ($request->all() as $key=>$value) {
             $result[] = [
-
-                'created_at' => Carbon::now(),
                 'amount' => SystemOption::getOption('interval_payment'),
                 'account_id' => $key,
-                'month' => jdate()->getMonth()
-
+                'pay_date' => $pay_date->toCarbon(),
             ];
         }
-//        dd($request->all());
-        if (!isset($result)) {
-            Interval::insert($result);
-        }
 
-        return Redirect::route('intervals.intervals');
+        if (Interval::insert($result)) {
+            return back()->with('alert.success', 'پرداخت با موفیقت انجام گرفت');
+        }
+        return back()->with('alert.danger', 'خطا در ثبت اطلاعات');
     }
 
     public function monthlyIntervals()
